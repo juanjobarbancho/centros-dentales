@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centros Dentales | Tu Sonrisa, Nuestra Misión</title>
+  <meta name="description" content="Centros Dentales – Clínicas dentales de referencia en España. Implantes, ortodoncia, estética dental y mucho más con los mejores especialistas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── RESET & BASE ─────────────────────────────────────── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: #0A1628;
+      background: #fff;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ─── DESIGN TOKENS ─────────────────────────────────────── */
+    :root {
+      --blue-900: #001F6B;
+      --blue-800: #00297A;
+      --blue-700: #003494;
+      --blue-600: #0047B3;
+      --blue:     #0055CC;
+      --blue-400: #2171D9;
+      --blue-300: #4D91E8;
+      --blue-100: #DEEEFF;
+      --blue-50:  #EDF5FF;
+      --white:    #FFFFFF;
+      --gray-50:  #F7F9FC;
+      --gray-100: #EEF2F8;
+      --gray-200: #D9E2F0;
+      --gray-500: #7A8EA8;
+      --gray-700: #3D5068;
+      --dark:     #0A1628;
+      --radius-sm: 8px;
+      --radius:    14px;
+      --radius-lg: 24px;
+      --radius-xl: 40px;
+      --shadow-sm: 0 1px 4px rgba(0,55,150,.08);
+      --shadow:    0 4px 20px rgba(0,55,150,.12);
+      --shadow-lg: 0 12px 40px rgba(0,55,150,.18);
+      --shadow-xl: 0 24px 64px rgba(0,55,150,.22);
+    }
+
+    /* ─── SCROLLBAR ─────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--gray-50); }
+    ::-webkit-scrollbar-thumb { background: var(--blue-300); border-radius: 3px; }
+
+    /* ─── UTILITIES ─────────────────────────────────────────── */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section { padding: 100px 0; }
+    .section--gray { background: var(--gray-50); }
+    .label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--blue);
+      background: var(--blue-50); border: 1px solid var(--blue-100);
+      padding: 6px 14px; border-radius: 100px; margin-bottom: 16px;
+    }
+    .label::before { content:''; width:6px; height:6px; background:var(--blue); border-radius:50%; }
+    .h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); font-weight: 800; line-height: 1.1; letter-spacing: -.02em; }
+    .h2 { font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 800; line-height: 1.15; letter-spacing: -.02em; }
+    .h3 { font-size: 1.25rem; font-weight: 700; line-height: 1.3; }
+    .text-blue { color: var(--blue); }
+    .text-center { text-align: center; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px 28px; border-radius: 100px; font-size: 15px;
+      font-weight: 600; cursor: pointer; border: none; text-decoration: none;
+      transition: all .22s ease; letter-spacing: .01em; white-space: nowrap;
+    }
+    .btn-primary {
+      background: var(--blue); color: #fff;
+      box-shadow: 0 4px 20px rgba(0,85,204,.35);
+    }
+    .btn-primary:hover {
+      background: var(--blue-700); transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,85,204,.45);
+    }
+    .btn-outline {
+      background: transparent; color: var(--blue);
+      border: 1.5px solid var(--blue-200, #90BEF0);
+    }
+    .btn-outline:hover { background: var(--blue-50); transform: translateY(-2px); }
+    .btn-white {
+      background: #fff; color: var(--blue);
+      box-shadow: 0 4px 20px rgba(0,0,0,.1);
+    }
+    .btn-white:hover { background: var(--blue-50); transform: translateY(-2px); }
+    .btn-lg { padding: 17px 36px; font-size: 16px; }
+    .btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+    /* ─── NAV ────────────────────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 24px;
+      transition: background .3s, box-shadow .3s, backdrop-filter .3s;
+    }
+    .nav.scrolled {
+      background: rgba(255,255,255,.95);
+      backdrop-filter: blur(20px);
+      box-shadow: 0 1px 0 rgba(0,55,150,.08);
+    }
+    .nav__inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; gap: 40px;
+      height: 74px;
+    }
+    .nav__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+    .nav__logo-icon {
+      width: 40px; height: 40px; border-radius: 10px;
+      background: var(--blue); display: flex; align-items: center; justify-content: center;
+    }
+    .nav__logo-text { font-size: 17px; font-weight: 800; color: var(--dark); line-height: 1.1; }
+    .nav__logo-text span { color: var(--blue); }
+    .nav__links {
+      display: flex; align-items: center; gap: 4px; list-style: none; flex: 1;
+    }
+    .nav__links a {
+      font-size: 14px; font-weight: 500; color: var(--gray-700);
+      text-decoration: none; padding: 7px 14px; border-radius: 8px;
+      transition: color .2s, background .2s;
+    }
+    .nav__links a:hover { color: var(--blue); background: var(--blue-50); }
+    .nav__actions { display: flex; align-items: center; gap: 10px; margin-left: auto; }
+    .nav__phone { font-size: 14px; font-weight: 600; color: var(--dark); text-decoration: none; }
+    .nav__phone:hover { color: var(--blue); }
+    .nav__hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 6px; }
+    .nav__hamburger span { display: block; width: 22px; height: 2px; background: var(--dark); border-radius: 2px; transition: all .3s; }
+
+    /* ─── HERO ──────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue) 60%, var(--blue-400) 100%);
+      position: relative; overflow: hidden;
+      display: flex; align-items: center;
+      padding: 100px 24px 60px;
+    }
+    .hero__bg-pattern {
+      position: absolute; inset: 0; pointer-events: none; opacity: .07;
+      background-image: radial-gradient(circle, #fff 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .hero__blob {
+      position: absolute; border-radius: 50%; filter: blur(80px); opacity: .15; pointer-events: none;
+    }
+    .hero__blob--1 { width: 600px; height: 600px; background: #4D91E8; top: -200px; right: -100px; }
+    .hero__blob--2 { width: 400px; height: 400px; background: #fff; bottom: -150px; left: -100px; }
+    .hero__inner {
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
+    }
+    .hero__content { position: relative; z-index: 1; }
+    .hero__label { background: rgba(255,255,255,.15); border-color: rgba(255,255,255,.25); color: #fff; }
+    .hero__label::before { background: #fff; }
+    .hero__title { color: #fff; margin-bottom: 24px; }
+    .hero__title em { font-style: normal; position: relative; }
+    .hero__title em::after {
+      content: ''; position: absolute; left: 0; bottom: -4px;
+      width: 100%; height: 3px; background: rgba(255,255,255,.5); border-radius: 2px;
+    }
+    .hero__desc { font-size: 18px; color: rgba(255,255,255,.8); margin-bottom: 40px; max-width: 480px; line-height: 1.7; }
+    .hero__actions { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 56px; }
+    .hero__stats { display: flex; gap: 32px; flex-wrap: wrap; }
+    .hero__stat-value { font-size: 2rem; font-weight: 800; color: #fff; line-height: 1; }
+    .hero__stat-label { font-size: 13px; color: rgba(255,255,255,.7); margin-top: 4px; }
+    .hero__stat { position: relative; }
+    .hero__stat:not(:last-child)::after {
+      content: ''; position: absolute; right: -16px; top: 8px; bottom: 8px;
+      width: 1px; background: rgba(255,255,255,.2);
+    }
+    .hero__visual { position: relative; z-index: 1; }
+    .hero__card {
+      background: rgba(255,255,255,.12); backdrop-filter: blur(24px);
+      border: 1px solid rgba(255,255,255,.2); border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .hero__card-img {
+      width: 100%; height: 380px; object-fit: cover; display: block;
+    }
+    .hero__card-img-placeholder {
+      width: 100%; height: 380px;
+      background: linear-gradient(180deg, rgba(255,255,255,.05) 0%, rgba(255,255,255,.15) 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero__floating-badge {
+      position: absolute; background: #fff; border-radius: var(--radius);
+      padding: 12px 16px; box-shadow: var(--shadow-lg);
+      display: flex; align-items: center; gap: 10px;
+    }
+    .hero__floating-badge--1 { bottom: 28px; left: -20px; }
+    .hero__floating-badge--2 { top: 28px; right: -20px; }
+    .hero__badge-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .hero__badge-icon--blue { background: var(--blue-50); }
+    .hero__badge-icon--green { background: #E8FBF3; }
+    .hero__badge-text { font-size: 13px; font-weight: 600; color: var(--dark); line-height: 1.3; }
+    .hero__badge-sub { font-size: 11px; color: var(--gray-500); font-weight: 400; }
+
+    /* ─── LOGOS BAR ──────────────────────────────────────────── */
+    .logos-bar { background: var(--white); border-bottom: 1px solid var(--gray-100); padding: 28px 0; }
+    .logos-bar__inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    }
+    .logos-bar__label { font-size: 13px; font-weight: 500; color: var(--gray-500); white-space: nowrap; }
+    .logos-bar__items { display: flex; align-items: center; gap: 40px; flex-wrap: wrap; }
+    .logos-bar__item {
+      font-size: 14px; font-weight: 700; color: var(--gray-200);
+      letter-spacing: .04em; text-transform: uppercase;
+    }
+
+    /* ─── SERVICES ──────────────────────────────────────────── */
+    .services__header { text-align: center; max-width: 620px; margin: 0 auto 64px; }
+    .services__header p { font-size: 17px; color: var(--gray-500); margin-top: 16px; }
+    .services__grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 24px;
+    }
+    .service-card {
+      background: var(--white); border: 1px solid var(--gray-100);
+      border-radius: var(--radius-lg); padding: 32px;
+      transition: all .3s ease; position: relative; overflow: hidden; cursor: pointer;
+      display: flex; flex-direction: column; gap: 14px;
+      text-decoration: none; color: inherit;
+    }
+    .service-card::before {
+      content: ''; position: absolute; inset: 0; border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-400) 100%);
+      opacity: 0; transition: opacity .3s;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); border-color: transparent; }
+    .service-card:hover::before { opacity: 1; }
+    .service-card__icon {
+      width: 52px; height: 52px; border-radius: 12px;
+      background: var(--blue-50); display: flex; align-items: center; justify-content: center;
+      transition: background .3s; position: relative; z-index: 1; flex-shrink: 0;
+    }
+    .service-card:hover .service-card__icon { background: rgba(255,255,255,.2); }
+    .service-card__icon svg { width: 26px; height: 26px; color: var(--blue); transition: color .3s; }
+    .service-card:hover .service-card__icon svg { color: #fff; }
+    .service-card__title { font-size: 17px; font-weight: 700; position: relative; z-index: 1; transition: color .3s; }
+    .service-card:hover .service-card__title { color: #fff; }
+    .service-card__desc { font-size: 14px; color: var(--gray-500); line-height: 1.65; position: relative; z-index: 1; transition: color .3s; }
+    .service-card:hover .service-card__desc { color: rgba(255,255,255,.8); }
+    .service-card__arrow {
+      margin-top: auto; width: 32px; height: 32px; border-radius: 50%;
+      background: var(--gray-100); display: flex; align-items: center; justify-content: center;
+      position: relative; z-index: 1; transition: background .3s;
+    }
+    .service-card:hover .service-card__arrow { background: rgba(255,255,255,.2); }
+    .service-card__arrow svg { width: 14px; height: 14px; color: var(--gray-500); transition: color .3s; }
+    .service-card:hover .service-card__arrow svg { color: #fff; }
+
+    /* ─── FEATURES / WHY US ─────────────────────────────────── */
+    .features__inner {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    }
+    .features__visual { position: relative; }
+    .features__img-wrap {
+      border-radius: var(--radius-xl); overflow: hidden;
+      box-shadow: var(--shadow-xl); aspect-ratio: 4/5;
+    }
+    .features__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .features__img-placeholder {
+      width: 100%; height: 100%;
+      background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue-400) 100%);
+      display: flex; align-items: center; justify-content: center; font-size: 80px;
+    }
+    .features__badge {
+      position: absolute; right: -24px; bottom: 40px;
+      background: #fff; border-radius: var(--radius);
+      padding: 20px 24px; box-shadow: var(--shadow-xl);
+      display: flex; align-items: center; gap: 14px;
+    }
+    .features__badge-circle {
+      width: 48px; height: 48px; border-radius: 12px;
+      background: var(--blue); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .features__badge-num { font-size: 24px; font-weight: 800; color: var(--dark); line-height: 1; }
+    .features__badge-txt { font-size: 13px; color: var(--gray-500); margin-top: 3px; }
+    .features__content { }
+    .features__list { display: flex; flex-direction: column; gap: 24px; margin-top: 40px; }
+    .feature-item { display: flex; gap: 16px; }
+    .feature-item__icon {
+      width: 44px; height: 44px; border-radius: 10px;
+      background: var(--blue-50); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .feature-item__icon svg { width: 22px; height: 22px; color: var(--blue); }
+    .feature-item__title { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+    .feature-item__desc { font-size: 14px; color: var(--gray-500); line-height: 1.65; }
+
+    /* ─── TREATMENTS SHOWCASE ───────────────────────────────── */
+    .treatments { background: var(--blue); padding: 100px 0; overflow: hidden; }
+    .treatments__header { text-align: center; max-width: 600px; margin: 0 auto 64px; color: #fff; }
+    .treatments__header .label { background: rgba(255,255,255,.15); border-color: rgba(255,255,255,.25); color: #fff; }
+    .treatments__header .label::before { background: #fff; }
+    .treatments__header p { color: rgba(255,255,255,.75); font-size: 17px; margin-top: 16px; }
+    .treatments__grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px;
+    }
+    .treatment-item {
+      background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.15);
+      border-radius: var(--radius-lg); padding: 28px 24px;
+      transition: all .3s; cursor: pointer; text-align: center;
+    }
+    .treatment-item:hover { background: rgba(255,255,255,.18); transform: translateY(-4px); }
+    .treatment-item__num {
+      font-size: 11px; font-weight: 700; letter-spacing: .1em;
+      color: rgba(255,255,255,.5); margin-bottom: 16px;
+    }
+    .treatment-item__icon { font-size: 36px; margin-bottom: 14px; }
+    .treatment-item__title { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .treatment-item__desc { font-size: 13px; color: rgba(255,255,255,.65); line-height: 1.6; }
+
+    /* ─── TESTIMONIALS ──────────────────────────────────────── */
+    .testimonials__header { text-align: center; max-width: 600px; margin: 0 auto 64px; }
+    .testimonials__header p { font-size: 17px; color: var(--gray-500); margin-top: 16px; }
+    .testimonials__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .testimonial-card {
+      background: var(--white); border: 1px solid var(--gray-100);
+      border-radius: var(--radius-lg); padding: 32px;
+    }
+    .testimonial-card__stars { display: flex; gap: 3px; margin-bottom: 16px; }
+    .testimonial-card__stars span { color: #F5A623; font-size: 16px; }
+    .testimonial-card__text { font-size: 15px; color: var(--gray-700); line-height: 1.7; margin-bottom: 24px; font-style: italic; }
+    .testimonial-card__author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-card__avatar {
+      width: 42px; height: 42px; border-radius: 50%; background: var(--blue-100);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; font-weight: 700; color: var(--blue); flex-shrink: 0;
+    }
+    .testimonial-card__name { font-size: 14px; font-weight: 700; }
+    .testimonial-card__meta { font-size: 12px; color: var(--gray-500); margin-top: 2px; }
+
+    /* ─── LOCATIONS ─────────────────────────────────────────── */
+    .locations__header { text-align: center; max-width: 600px; margin: 0 auto 64px; }
+    .locations__header p { font-size: 17px; color: var(--gray-500); margin-top: 16px; }
+    .locations__grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+    .location-card {
+      background: var(--white); border: 1px solid var(--gray-100);
+      border-radius: var(--radius-lg); overflow: hidden;
+      transition: all .3s; text-decoration: none; color: inherit;
+    }
+    .location-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .location-card__map {
+      height: 160px; background: linear-gradient(135deg, var(--blue-100) 0%, var(--blue-50) 100%);
+      display: flex; align-items: center; justify-content: center; position: relative;
+    }
+    .location-card__map-pin {
+      width: 44px; height: 44px; background: var(--blue); border-radius: 50% 50% 50% 0;
+      transform: rotate(-45deg); display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,85,204,.4);
+    }
+    .location-card__map-pin svg { transform: rotate(45deg); width: 20px; height: 20px; color: #fff; }
+    .location-card__body { padding: 24px; }
+    .location-card__city { font-size: 17px; font-weight: 800; margin-bottom: 4px; }
+    .location-card__addr { font-size: 13px; color: var(--gray-500); margin-bottom: 16px; line-height: 1.5; }
+    .location-card__info { display: flex; flex-direction: column; gap: 8px; }
+    .location-card__row { display: flex; align-items: center; gap: 8px; font-size: 13px; }
+    .location-card__row svg { width: 15px; height: 15px; color: var(--blue); flex-shrink: 0; }
+    .location-card__row span { color: var(--gray-700); }
+
+    /* ─── CTA BANNER ────────────────────────────────────────── */
+    .cta-banner {
+      background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue) 100%);
+      padding: 80px 24px; text-align: center; position: relative; overflow: hidden;
+    }
+    .cta-banner__bg {
+      position: absolute; inset: 0; pointer-events: none; opacity: .05;
+      background-image: radial-gradient(circle, #fff 1px, transparent 1px);
+      background-size: 32px 32px;
+    }
+    .cta-banner__title { font-size: clamp(1.8rem,3vw,2.8rem); font-weight: 800; color: #fff; margin-bottom: 16px; }
+    .cta-banner__desc { font-size: 17px; color: rgba(255,255,255,.75); margin-bottom: 40px; max-width: 520px; margin-left: auto; margin-right: auto; }
+    .cta-banner__actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* ─── FOOTER ────────────────────────────────────────────── */
+    .footer { background: var(--dark); color: rgba(255,255,255,.7); padding: 80px 24px 40px; }
+    .footer__grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 60px;
+    }
+    .footer__brand .nav__logo-text { color: #fff; }
+    .footer__brand p { font-size: 14px; line-height: 1.7; margin-top: 16px; max-width: 300px; }
+    .footer__social { display: flex; gap: 10px; margin-top: 24px; }
+    .footer__social a {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.6); transition: all .2s; text-decoration: none;
+    }
+    .footer__social a:hover { background: var(--blue); color: #fff; }
+    .footer__social svg { width: 16px; height: 16px; }
+    .footer__col-title { font-size: 13px; font-weight: 700; color: #fff; letter-spacing: .06em; text-transform: uppercase; margin-bottom: 20px; }
+    .footer__links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer__links a { font-size: 14px; color: rgba(255,255,255,.6); text-decoration: none; transition: color .2s; }
+    .footer__links a:hover { color: #fff; }
+    .footer__bottom {
+      max-width: 1200px; margin: 0 auto;
+      border-top: 1px solid rgba(255,255,255,.08);
+      padding-top: 32px; display: flex; align-items: center; justify-content: space-between;
+      font-size: 13px; flex-wrap: wrap; gap: 16px;
+    }
+    .footer__bottom a { color: rgba(255,255,255,.6); text-decoration: none; }
+    .footer__bottom a:hover { color: #fff; }
+
+    /* ─── MOBILE NAV ──────────────────────────────────────────  */
+    .nav__mobile {
+      display: none; position: fixed; inset: 0; background: rgba(0,20,60,.96);
+      backdrop-filter: blur(20px); z-index: 999; flex-direction: column;
+      align-items: center; justify-content: center; gap: 12px;
+    }
+    .nav__mobile.open { display: flex; }
+    .nav__mobile a {
+      font-size: 24px; font-weight: 700; color: #fff; text-decoration: none;
+      padding: 12px 32px; border-radius: var(--radius); transition: background .2s;
+    }
+    .nav__mobile a:hover { background: rgba(255,255,255,.1); }
+    .nav__mobile-close {
+      position: absolute; top: 24px; right: 24px;
+      width: 44px; height: 44px; border-radius: 50%;
+      background: rgba(255,255,255,.1); border: none; cursor: pointer;
+      display: flex; align-items: center; justify-content: center; color: #fff;
+    }
+
+    /* ─── SCROLL ANIMATIONS ─────────────────────────────────── */
+    .fade-up { opacity: 0; transform: translateY(30px); transition: opacity .6s ease, transform .6s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-up:nth-child(1) { transition-delay: 0s; }
+    .fade-up:nth-child(2) { transition-delay: .1s; }
+    .fade-up:nth-child(3) { transition-delay: .2s; }
+    .fade-up:nth-child(4) { transition-delay: .3s; }
+    .fade-up:nth-child(5) { transition-delay: .4s; }
+    .fade-up:nth-child(6) { transition-delay: .5s; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .hero__inner { grid-template-columns: 1fr; text-align: center; }
+      .hero__desc { max-width: 100%; }
+      .hero__actions { justify-content: center; }
+      .hero__stats { justify-content: center; }
+      .hero__visual { display: none; }
+      .features__inner { grid-template-columns: 1fr; }
+      .features__visual { display: none; }
+      .treatments__grid { grid-template-columns: repeat(2,1fr); }
+      .footer__grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .section { padding: 72px 0; }
+      .nav__links, .nav__phone, .nav__actions .btn { display: none; }
+      .nav__hamburger { display: flex; }
+      .services__grid { grid-template-columns: 1fr; }
+      .testimonials__grid { grid-template-columns: 1fr; }
+      .locations__grid { grid-template-columns: 1fr; }
+      .treatments__grid { grid-template-columns: 1fr 1fr; }
+      .hero__floating-badge { display: none; }
+    }
+    @media (max-width: 480px) {
+      .treatments__grid { grid-template-columns: 1fr; }
+      .footer__grid { grid-template-columns: 1fr; }
+      .hero__stats { gap: 24px; }
+      .hero__stat:not(:last-child)::after { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="navbar">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">
+        <div class="nav__logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2C8 2 4 5 4 9c0 2.5 1 4.5 3 6l1 7h8l1-7c2-1.5 3-3.5 3-6 0-4-4-7-8-7z"/>
+            <path d="M9 9h6M12 6v6"/>
+          </svg>
+        </div>
+        <div class="nav__logo-text">Centros<br/><span>Dentales</span></div>
+      </a>
+      <ul class="nav__links">
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#tratamientos">Tratamientos</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#localizaciones">Clínicas</a></li>
+        <li><a href="#testimonios">Opiniones</a></li>
+      </ul>
+      <div class="nav__actions">
+        <a href="tel:+34900000000" class="nav__phone">📞 900 000 000</a>
+        <a href="#cita" class="btn btn-primary">Pedir Cita</a>
+      </div>
+      <div class="nav__hamburger" id="hamburger" onclick="openMobileNav()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- MOBILE NAV -->
+  <div class="nav__mobile" id="mobileNav">
+    <button class="nav__mobile-close" onclick="closeMobileNav()">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <a href="#servicios" onclick="closeMobileNav()">Servicios</a>
+    <a href="#tratamientos" onclick="closeMobileNav()">Tratamientos</a>
+    <a href="#nosotros" onclick="closeMobileNav()">Nosotros</a>
+    <a href="#localizaciones" onclick="closeMobileNav()">Clínicas</a>
+    <a href="#testimonios" onclick="closeMobileNav()">Opiniones</a>
+    <a href="#cita" class="btn btn-primary btn-lg" onclick="closeMobileNav()" style="margin-top:8px;">Pedir Cita</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero__bg-pattern"></div>
+    <div class="hero__blob hero__blob--1"></div>
+    <div class="hero__blob hero__blob--2"></div>
+    <div class="hero__inner">
+      <div class="hero__content">
+        <span class="label hero__label">Clínicas Dentales de Confianza</span>
+        <h1 class="h1 hero__title">
+          Tu sonrisa <em>perfecta</em><br/>está en nuestras<br/>manos
+        </h1>
+        <p class="hero__desc">
+          Más de 20 años cuidando la salud dental de miles de pacientes. Tecnología de vanguardia, especialistas de primer nivel y un trato cercano y personalizado.
+        </p>
+        <div class="hero__actions">
+          <a href="#cita" class="btn btn-white btn-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+            </svg>
+            Pedir Cita Gratis
+          </a>
+          <a href="#servicios" class="btn btn-outline" style="border-color:rgba(255,255,255,.4);color:#fff;">
+            Ver Servicios
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+        </div>
+        <div class="hero__stats">
+          <div class="hero__stat">
+            <div class="hero__stat-value">20+</div>
+            <div class="hero__stat-label">Años de experiencia</div>
+          </div>
+          <div class="hero__stat">
+            <div class="hero__stat-value">50k+</div>
+            <div class="hero__stat-label">Pacientes atendidos</div>
+          </div>
+          <div class="hero__stat">
+            <div class="hero__stat-value">15</div>
+            <div class="hero__stat-label">Clínicas en España</div>
+          </div>
+          <div class="hero__stat">
+            <div class="hero__stat-value">4.9★</div>
+            <div class="hero__stat-label">Valoración media</div>
+          </div>
+        </div>
+      </div>
+      <div class="hero__visual">
+        <div class="hero__card">
+          <div class="hero__card-img-placeholder">
+            <svg width="120" height="120" viewBox="0 0 100 100" fill="none">
+              <circle cx="50" cy="50" r="48" stroke="rgba(255,255,255,.2)" stroke-width="2"/>
+              <path d="M50 15C33 15 20 27 20 42c0 9 3.5 16 10 21l3 22h34l3-22c6.5-5 10-12 10-21 0-15-13-27-30-27z" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.4)" stroke-width="1.5"/>
+              <path d="M38 42h24M50 30v24" stroke="rgba(255,255,255,.5)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </div>
+        <div class="hero__floating-badge hero__floating-badge--1">
+          <div class="hero__badge-icon hero__badge-icon--blue">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0055CC" stroke-width="2.2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <div class="hero__badge-text">Primera visita gratis</div>
+            <div class="hero__badge-sub">Sin compromiso</div>
+          </div>
+        </div>
+        <div class="hero__floating-badge hero__floating-badge--2">
+          <div class="hero__badge-icon hero__badge-icon--green">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2.2" stroke-linecap="round"><path d="M12 21C12 21 3 14 3 8a5 5 0 0110 0 5 5 0 0110 0c0 6-9 13-9 13z"/></svg>
+          </div>
+          <div>
+            <div class="hero__badge-text">+50.000 pacientes</div>
+            <div class="hero__badge-sub">Confían en nosotros</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOGOS BAR -->
+  <div class="logos-bar">
+    <div class="logos-bar__inner">
+      <span class="logos-bar__label">Seguros y financiación aceptados</span>
+      <div class="logos-bar__items">
+        <span class="logos-bar__item">Adeslas</span>
+        <span class="logos-bar__item">Sanitas</span>
+        <span class="logos-bar__item">Mapfre</span>
+        <span class="logos-bar__item">Asisa</span>
+        <span class="logos-bar__item">DKV</span>
+        <span class="logos-bar__item">Cofidis</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="section" id="servicios">
+    <div class="container">
+      <div class="services__header">
+        <span class="label">Nuestros Servicios</span>
+        <h2 class="h2">Todo lo que tu sonrisa necesita</h2>
+        <p>Ofrecemos una atención dental integral con los tratamientos más avanzados y un equipo de especialistas dedicados a tu bienestar.</p>
+      </div>
+      <div class="services__grid">
+
+        <a href="#" class="service-card fade-up">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
+            </svg>
+          </div>
+          <div class="service-card__title">Estética Dental</div>
+          <div class="service-card__desc">Blanqueamiento profesional, carillas de porcelana y diseño de sonrisa para que luzas la sonrisa que siempre soñaste.</div>
+          <div class="service-card__arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+        </a>
+
+        <a href="#" class="service-card fade-up">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div class="service-card__title">Implantes Dentales</div>
+          <div class="service-card__desc">Recupera tu capacidad masticatoria y estética con implantes de última generación. Solución permanente con materiales premium.</div>
+          <div class="service-card__arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+        </a>
+
+        <a href="#" class="service-card fade-up">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <div class="service-card__title">Ortodoncia e Invisalign</div>
+          <div class="service-card__desc">Alineadores invisibles y brackets cerámicos para corregir la posición de tus dientes de forma discreta y efectiva.</div>
+          <div class="service-card__arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+        </a>
+
+        <a href="#" class="service-card fade-up">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+            </svg>
+          </div>
+          <div class="service-card__title">Periodoncia</div>
+          <div class="service-card__desc">Diagnóstico y tratamiento de enfermedades de las encías. Prevención y tratamiento de la periodontitis con técnicas mínimamente invasivas.</div>
+          <div class="service-card__arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+        </a>
+
+        <a href="#" class="service-card fade-up">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+          </div>
+          <div class="service-card__title">Endodoncia</div>
+          <div class="service-card__desc">Tratamientos de conductos de alta precisión para salvar dientes afectados. Procedimientos sin dolor con anestesia avanzada.</div>
+          <div class="service-card__arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+        </a>
+
+        <a href="#" class="service-card fade-up">
+          <div class="service-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+            </svg>
+          </div>
+          <div class="service-card__title">Odontopediatría</div>
+          <div class="service-card__desc">Atención dental especializada para los más pequeños en un ambiente seguro, divertido y sin miedo. Cuidamos su sonrisa desde el principio.</div>
+          <div class="service-card__arrow">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES / WHY US -->
+  <section class="section section--gray" id="nosotros">
+    <div class="container">
+      <div class="features__inner">
+        <div class="features__visual">
+          <div class="features__img-wrap">
+            <div class="features__img-placeholder">🦷</div>
+          </div>
+          <div class="features__badge">
+            <div class="features__badge-circle">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div>
+              <div class="features__badge-num">4.9 / 5</div>
+              <div class="features__badge-txt">Valoración en Google</div>
+            </div>
+          </div>
+        </div>
+        <div class="features__content">
+          <span class="label">¿Por qué elegirnos?</span>
+          <h2 class="h2">La excelencia dental que mereces</h2>
+          <div class="features__list">
+            <div class="feature-item fade-up">
+              <div class="feature-item__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                </svg>
+              </div>
+              <div>
+                <div class="feature-item__title">Tecnología de última generación</div>
+                <div class="feature-item__desc">Escáner intraoral 3D, TAC dental de baja radiación, y CAD/CAM para prótesis el mismo día. Diagnóstico preciso y tratamientos más rápidos.</div>
+              </div>
+            </div>
+            <div class="feature-item fade-up">
+              <div class="feature-item__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+              </div>
+              <div>
+                <div class="feature-item__title">Especialistas certificados</div>
+                <div class="feature-item__desc">Nuestro equipo está formado por especialistas con máster universitario en cada área: implantología, ortodoncia, estética y más.</div>
+              </div>
+            </div>
+            <div class="feature-item fade-up">
+              <div class="feature-item__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z"/>
+                  <path d="M12 6v6l4 2"/>
+                </svg>
+              </div>
+              <div>
+                <div class="feature-item__title">Horario flexible y urgencias</div>
+                <div class="feature-item__desc">Abrimos de lunes a sábado en horario ampliado. Atendemos urgencias dentales el mismo día y ofrecemos cita online 24/7.</div>
+              </div>
+            </div>
+            <div class="feature-item fade-up">
+              <div class="feature-item__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                  <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
+                </svg>
+              </div>
+              <div>
+                <div class="feature-item__title">Financiación sin intereses</div>
+                <div class="feature-item__desc">Paga tu tratamiento cómodamente en hasta 24 meses sin intereses. Hacemos que la salud dental sea accesible para todos.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TREATMENTS SHOWCASE -->
+  <section id="tratamientos" class="treatments">
+    <div class="container">
+      <div class="treatments__header">
+        <span class="label">Tratamientos</span>
+        <h2 class="h2" style="color:#fff;">Soluciones para cada necesidad</h2>
+        <p>Desde la revisión más básica hasta la rehabilitación completa, tenemos la solución perfecta para ti.</p>
+      </div>
+      <div class="treatments__grid">
+        <div class="treatment-item fade-up">
+          <div class="treatment-item__num">01</div>
+          <div class="treatment-item__icon">🦷</div>
+          <div class="treatment-item__title">Implantes All-on-4</div>
+          <div class="treatment-item__desc">Recupera toda tu dentadura en una sola sesión con 4 implantes estratégicamente colocados.</div>
+        </div>
+        <div class="treatment-item fade-up">
+          <div class="treatment-item__num">02</div>
+          <div class="treatment-item__icon">✨</div>
+          <div class="treatment-item__title">Diseño de Sonrisa</div>
+          <div class="treatment-item__desc">Simulación digital de tu nueva sonrisa antes de comenzar cualquier tratamiento estético.</div>
+        </div>
+        <div class="treatment-item fade-up">
+          <div class="treatment-item__num">03</div>
+          <div class="treatment-item__icon">🔬</div>
+          <div class="treatment-item__title">Blanqueamiento LED</div>
+          <div class="treatment-item__desc">Hasta 8 tonos más blanco en una sola sesión de 45 minutos con tecnología LED avanzada.</div>
+        </div>
+        <div class="treatment-item fade-up">
+          <div class="treatment-item__num">04</div>
+          <div class="treatment-item__icon">💎</div>
+          <div class="treatment-item__title">Carillas de Porcelana</div>
+          <div class="treatment-item__desc">Finas láminas cerámicas que transforman por completo la estética de tu sonrisa.</div>
+        </div>
+        <div class="treatment-item fade-up">
+          <div class="treatment-item__num">05</div>
+          <div class="treatment-item__icon">📐</div>
+          <div class="treatment-item__title">Invisalign Premium</div>
+          <div class="treatment-item__desc">Proveedor Diamond Invisalign. Los mejores resultados con el método más discreto del mercado.</div>
+        </div>
+        <div class="treatment-item fade-up">
+          <div class="treatment-item__num">06</div>
+          <div class="treatment-item__icon">🧬</div>
+          <div class="treatment-item__title">Regeneración Ósea</div>
+          <div class="treatment-item__desc">Técnicas avanzadas de injerto óseo para pacientes que necesitan un implante sin hueso suficiente.</div>
+        </div>
+        <div class="treatment-item fade-up">
+          <div class="treatment-item__num">07</div>
+          <div class="treatment-item__icon">🛡️</div>
+          <div class="treatment-item__title">Periodoncia Láser</div>
+          <div class="treatment-item__desc">Tratamiento de encías con láser de diodo. Sin bisturí, sin puntos y recuperación inmediata.</div>
+        </div>
+        <div class="treatment-item fade-up">
+          <div class="treatment-item__num">08</div>
+          <div class="treatment-item__icon">👶</div>
+          <div class="treatment-item__title">Revisión Infantil</div>
+          <div class="treatment-item__desc">Primera revisión gratuita para niños. Selladores, flúor y educación en higiene dental desde pequeños.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section" id="testimonios">
+    <div class="container">
+      <div class="testimonials__header">
+        <span class="label">Testimonios</span>
+        <h2 class="h2">Lo que dicen nuestros pacientes</h2>
+        <p>Más de 50.000 pacientes han confiado en nosotros. Estas son algunas de sus experiencias.</p>
+      </div>
+      <div class="testimonials__grid">
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-card__stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="testimonial-card__text">"Me puse implantes hace dos años y estoy encantada. El proceso fue totalmente indoloro y el resultado es espectacular. El equipo me explicó cada paso y me sentí en buenas manos en todo momento."</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">MG</div>
+            <div>
+              <div class="testimonial-card__name">María García</div>
+              <div class="testimonial-card__meta">Implantes dentales · Madrid</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-card__stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="testimonial-card__text">"Llevaba años con miedo al dentista y aquí encontré un equipo increíblemente empático. El tratamiento de ortodoncia invisible ha superado todas mis expectativas. ¡Mi sonrisa es otra!"</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">JL</div>
+            <div>
+              <div class="testimonial-card__name">Javier López</div>
+              <div class="testimonial-card__meta">Invisalign · Barcelona</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-card__stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+          <p class="testimonial-card__text">"El diseño de sonrisa fue una experiencia transformadora. Antes de empezar, me mostraron el resultado final en 3D. La calidad de las carillas es excepcional y el precio fue muy justo."</p>
+          <div class="testimonial-card__author">
+            <div class="testimonial-card__avatar">AR</div>
+            <div>
+              <div class="testimonial-card__name">Ana Rodríguez</div>
+              <div class="testimonial-card__meta">Diseño de sonrisa · Valencia</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCATIONS -->
+  <section class="section section--gray" id="localizaciones">
+    <div class="container">
+      <div class="locations__header">
+        <span class="label">Nuestras Clínicas</span>
+        <h2 class="h2">Encuéntranos cerca de ti</h2>
+        <p>15 clínicas repartidas por toda España para que siempre tengas un especialista cerca.</p>
+      </div>
+      <div class="locations__grid">
+        <a href="#" class="location-card fade-up">
+          <div class="location-card__map">
+            <div class="location-card__map-pin">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+          </div>
+          <div class="location-card__body">
+            <div class="location-card__city">Madrid Centro</div>
+            <div class="location-card__addr">Calle Gran Vía 45, 2ª planta<br/>28013 Madrid</div>
+            <div class="location-card__info">
+              <div class="location-card__row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.2 2 2 0 012.19 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.08A16 16 0 0016.92 17.09l.61-.61a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0124 18.92z"/></svg>
+                <span>+34 91 000 0000</span>
+              </div>
+              <div class="location-card__row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z"/><path d="M12 6v6l4 2"/></svg>
+                <span>Lun–Vie 9:00–20:00 · Sáb 9:00–14:00</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        <a href="#" class="location-card fade-up">
+          <div class="location-card__map">
+            <div class="location-card__map-pin">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+          </div>
+          <div class="location-card__body">
+            <div class="location-card__city">Barcelona</div>
+            <div class="location-card__addr">Passeig de Gràcia 88, pral.<br/>08008 Barcelona</div>
+            <div class="location-card__info">
+              <div class="location-card__row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.2 2 2 0 012.19 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.08A16 16 0 0016.92 17.09l.61-.61a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0124 18.92z"/></svg>
+                <span>+34 93 000 0000</span>
+              </div>
+              <div class="location-card__row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z"/><path d="M12 6v6l4 2"/></svg>
+                <span>Lun–Vie 9:00–20:00 · Sáb 9:00–14:00</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        <a href="#" class="location-card fade-up">
+          <div class="location-card__map">
+            <div class="location-card__map-pin">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+          </div>
+          <div class="location-card__body">
+            <div class="location-card__city">Valencia</div>
+            <div class="location-card__addr">Calle Colón 20, bajo<br/>46004 Valencia</div>
+            <div class="location-card__info">
+              <div class="location-card__row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.2 2 2 0 012.19 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.08A16 16 0 0016.92 17.09l.61-.61a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0124 18.92z"/></svg>
+                <span>+34 96 000 0000</span>
+              </div>
+              <div class="location-card__row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z"/><path d="M12 6v6l4 2"/></svg>
+                <span>Lun–Vie 9:00–20:00 · Sáb 9:00–14:00</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        <a href="#" class="location-card fade-up">
+          <div class="location-card__map">
+            <div class="location-card__map-pin">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+          </div>
+          <div class="location-card__body">
+            <div class="location-card__city">Sevilla</div>
+            <div class="location-card__addr">Avenida de la Constitución 6<br/>41001 Sevilla</div>
+            <div class="location-card__info">
+              <div class="location-card__row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.2 2 2 0 012.19 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.08A16 16 0 0016.92 17.09l.61-.61a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0124 18.92z"/></svg>
+                <span>+34 95 000 0000</span>
+              </div>
+              <div class="location-card__row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z"/><path d="M12 6v6l4 2"/></svg>
+                <span>Lun–Vie 9:00–20:00 · Sáb 9:00–14:00</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        <a href="#" class="location-card fade-up">
+          <div class="location-card__map">
+            <div class="location-card__map-pin">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+          </div>
+          <div class="location-card__body">
+            <div class="location-card__city">Bilbao</div>
+            <div class="location-card__addr">Gran Vía Don Diego López de Haro 25<br/>48009 Bilbao</div>
+            <div class="location-card__info">
+              <div class="location-card__row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.2 2 2 0 012.19 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.08A16 16 0 0016.92 17.09l.61-.61a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0124 18.92z"/></svg>
+                <span>+34 94 000 0000</span>
+              </div>
+              <div class="location-card__row">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10-4.5 10-10 10z"/><path d="M12 6v6l4 2"/></svg>
+                <span>Lun–Vie 9:00–20:00 · Sáb 9:00–14:00</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        <a href="#" class="location-card fade-up" style="border:2px dashed var(--gray-200); background: var(--gray-50); display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:280px; gap:16px;">
+          <div style="width:52px;height:52px;border-radius:50%;background:var(--blue-50);display:flex;align-items:center;justify-content:center;">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2.5" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          </div>
+          <div style="text-align:center;">
+            <div style="font-weight:700;color:var(--dark);font-size:15px;">Ver todas las clínicas</div>
+            <div style="font-size:13px;color:var(--gray-500);margin-top:4px;">15 centros en España</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <div class="cta-banner" id="cita">
+    <div class="cta-banner__bg"></div>
+    <div class="container" style="position:relative;z-index:1;">
+      <span class="label" style="background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.25);color:#fff;">
+        <span style="background:#fff;width:6px;height:6px;border-radius:50%;display:inline-block;"></span>
+        Primera Visita Gratuita
+      </span>
+      <h2 class="cta-banner__title">¿Listo para transformar tu sonrisa?</h2>
+      <p class="cta-banner__desc">Solicita tu primera consulta totalmente gratis. Sin compromiso, sin esperas. Nuestros especialistas te asesorarán sobre el mejor tratamiento para ti.</p>
+      <div class="cta-banner__actions">
+        <a href="#" class="btn btn-white btn-lg">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="width:18px;height:18px;">
+            <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+          </svg>
+          Pedir Cita Online
+        </a>
+        <a href="tel:+34900000000" class="btn btn-outline btn-lg" style="border-color:rgba(255,255,255,.4);color:#fff;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" style="width:18px;height:18px;"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.2 2 2 0 012.19 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.91 7.08A16 16 0 0016.92 17.09l.61-.61a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0124 18.92z"/></svg>
+          Llamar ahora: 900 000 000
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__grid">
+      <div class="footer__brand">
+        <a href="#" class="nav__logo" style="margin-bottom:0;">
+          <div class="nav__logo-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round">
+              <path d="M12 2C8 2 4 5 4 9c0 2.5 1 4.5 3 6l1 7h8l1-7c2-1.5 3-3.5 3-6 0-4-4-7-8-7z"/>
+              <path d="M9 9h6M12 6v6"/>
+            </svg>
+          </div>
+          <div class="nav__logo-text">Centros<br/><span>Dentales</span></div>
+        </a>
+        <p>Más de 20 años cuidando la salud dental de miles de familias en toda España. Tecnología, experiencia y confianza a tu servicio.</p>
+        <div class="footer__social">
+          <a href="#" title="Facebook">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" title="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" title="YouTube">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02"/></svg>
+          </a>
+        </div>
+      </div>
+      <div>
+        <div class="footer__col-title">Servicios</div>
+        <ul class="footer__links">
+          <li><a href="#">Implantes Dentales</a></li>
+          <li><a href="#">Ortodoncia</a></li>
+          <li><a href="#">Estética Dental</a></li>
+          <li><a href="#">Periodoncia</a></li>
+          <li><a href="#">Endodoncia</a></li>
+          <li><a href="#">Odontopediatría</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Clínicas</div>
+        <ul class="footer__links">
+          <li><a href="#">Madrid</a></li>
+          <li><a href="#">Barcelona</a></li>
+          <li><a href="#">Valencia</a></li>
+          <li><a href="#">Sevilla</a></li>
+          <li><a href="#">Bilbao</a></li>
+          <li><a href="#">Ver todas →</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer__col-title">Empresa</div>
+        <ul class="footer__links">
+          <li><a href="#">Sobre nosotros</a></li>
+          <li><a href="#">Nuestro equipo</a></li>
+          <li><a href="#">Blog dental</a></li>
+          <li><a href="#">Trabaja con nosotros</a></li>
+          <li><a href="#">Contacto</a></li>
+          <li><a href="#">Pedir cita</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2025 Centros Dentales. Todos los derechos reservados.</span>
+      <div style="display:flex;gap:20px;">
+        <a href="#">Aviso legal</a>
+        <a href="#">Política de privacidad</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // ── NAV SCROLL EFFECT
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // ── MOBILE NAV
+    function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); document.body.style.overflow='hidden'; }
+    function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); document.body.style.overflow=''; }
+
+    // ── SCROLL ANIMATIONS
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // ── SMOOTH ACTIVE NAV
+    const sections = document.querySelectorAll('section[id], div[id]');
+    const navLinks = document.querySelectorAll('.nav__links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === `#${current}` ? 'var(--blue)' : '';
+        a.style.background = a.getAttribute('href') === `#${current}` ? 'var(--blue-50)' : '';
+      });
+    });
+  </script>
+</body>
+</html>
