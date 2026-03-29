@@ -685,6 +685,95 @@
     </div>
   </section>
 
+  <!-- ANTES / DESPUÉS -->
+  <section style="background:#F6FCFC;">
+    <h2 class="section-title">Resultados reales</h2>
+    <p style="text-align:center;color:#6A8A8C;margin-bottom:36px;font-size:16px;">Arrastra la barra para comparar el antes y el después</p>
+
+    <div class="before-after-grid">
+
+      <!-- SLIDER 1 -->
+      <div class="ba-slider" id="slider1">
+        <div class="ba-before">
+          <!-- SUSTITUIR src por la foto ANTES real -->
+          <img src="../img/ortodoncia-antes-1.jpg" alt="Antes ortodoncia" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22><rect width=%22600%22 height=%22400%22 fill=%22%23e0f0f1%22/><text x=%2250%25%22 y=%2245%25%22 text-anchor=%22middle%22 fill=%22%2317C5CB%22 font-size=%2228%22 font-family=%22Inter,sans-serif%22 font-weight=%22700%22>ANTES</text><text x=%2250%25%22 y=%2258%25%22 text-anchor=%22middle%22 fill=%22%236A8A8C%22 font-size=%2214%22 font-family=%22Inter,sans-serif%22>Añade tu foto aquí</text></svg>'" />
+        </div>
+        <div class="ba-after">
+          <!-- SUSTITUIR src por la foto DESPUÉS real -->
+          <img src="../img/ortodoncia-despues-1.jpg" alt="Después ortodoncia" onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22400%22><rect width=%22600%22 height=%22400%22 fill=%22%23c7f2f4%22/><text x=%2250%25%22 y=%2245%25%22 text-anchor=%22middle%22 fill=%22%230DA8AE%22 font-size=%2228%22 font-family=%22Inter,sans-serif%22 font-weight=%22700%22>DESPUÉS</text><text x=%2250%25%22 y=%2258%25%22 text-anchor=%22middle%22 fill=%22%236A8A8C%22 font-size=%2214%22 font-family=%22Inter,sans-serif%22>Añade tu foto aquí</text></svg>'" />
+        </div>
+        <div class="ba-handle">
+          <div class="ba-line"></div>
+          <div class="ba-circle">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          </div>
+          <div class="ba-line"></div>
+        </div>
+        <div class="ba-label ba-label-before">ANTES</div>
+        <div class="ba-label ba-label-after">DESPUÉS</div>
+      </div>
+
+    </div>
+
+    <style>
+      .before-after-grid { display:flex; flex-wrap:wrap; gap:32px; justify-content:center; max-width:900px; margin:0 auto; }
+      .ba-slider { position:relative; width:100%; max-width:820px; border-radius:20px; overflow:hidden; box-shadow:0 12px 48px rgba(23,197,203,.18); cursor:col-resize; user-select:none; touch-action:none; }
+      .ba-before, .ba-after { position:absolute; top:0; left:0; width:100%; height:100%; }
+      .ba-before img, .ba-after img { width:100%; height:100%; object-fit:cover; display:block; pointer-events:none; }
+      .ba-after { clip-path:inset(0 50% 0 0); }
+      .ba-handle { position:absolute; top:0; left:50%; transform:translateX(-50%); height:100%; display:flex; flex-direction:column; align-items:center; z-index:10; pointer-events:none; }
+      .ba-line { flex:1; width:2.5px; background:rgba(255,255,255,.9); }
+      .ba-circle { width:44px; height:44px; background:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; box-shadow:0 4px 16px rgba(0,0,0,.25); flex-shrink:0; gap:0; }
+      .ba-circle svg { width:16px; height:16px; color:#17C5CB; }
+      .ba-label { position:absolute; top:14px; font-size:11px; font-weight:800; letter-spacing:.12em; padding:4px 10px; border-radius:100px; z-index:9; pointer-events:none; }
+      .ba-label-before { left:14px; background:rgba(0,0,0,.45); color:#fff; }
+      .ba-label-after { right:14px; background:#17C5CB; color:#fff; }
+      /* Placeholder height antes de que cargue la imagen */
+      .ba-slider { aspect-ratio:3/2; }
+      .ba-before img, .ba-after img { position:absolute; top:0; left:0; }
+      @media(max-width:600px){ .ba-circle { width:36px; height:36px; } .ba-circle svg { width:13px; height:13px; } }
+    </style>
+
+    <script>
+    (function(){
+      function initSlider(el) {
+        var handle = el.querySelector('.ba-handle');
+        var after  = el.querySelector('.ba-after');
+        var pct = 50;
+
+        function setPos(x) {
+          var rect = el.getBoundingClientRect();
+          pct = Math.min(100, Math.max(0, ((x - rect.left) / rect.width) * 100));
+          handle.style.left = pct + '%';
+          after.style.clipPath = 'inset(0 ' + (100 - pct) + '% 0 0)';
+        }
+
+        el.addEventListener('mousedown', function(e) {
+          e.preventDefault();
+          setPos(e.clientX);
+          function onMove(e){ setPos(e.clientX); }
+          function onUp(){ document.removeEventListener('mousemove', onMove); document.removeEventListener('mouseup', onUp); }
+          document.addEventListener('mousemove', onMove);
+          document.addEventListener('mouseup', onUp);
+        });
+
+        el.addEventListener('touchstart', function(e) {
+          e.preventDefault();
+          setPos(e.touches[0].clientX);
+        }, {passive:false});
+
+        el.addEventListener('touchmove', function(e) {
+          e.preventDefault();
+          setPos(e.touches[0].clientX);
+        }, {passive:false});
+      }
+
+      document.querySelectorAll('.ba-slider').forEach(initSlider);
+    })();
+    </script>
+  </section>
+
   <!-- FAQ -->
   <section>
     <h2 class="section-title">Preguntas frecuentes</h2>
