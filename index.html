@@ -241,7 +241,7 @@
     .sociedades__pre { font-size:11px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gray-500); margin-bottom:10px; }
     .sociedades__title { font-size:clamp(1.4rem,2.5vw,2rem); font-weight:800; line-height:1.2; letter-spacing:-.02em; }
     .sociedades__grid { display:grid; grid-template-columns:repeat(4,1fr); gap:28px; align-items:center; }
-    .soc-item { display:flex; flex-direction:column; align-items:center; gap:10px; padding:22px 16px; border:1px solid var(--gray-100); border-radius:var(--radius-lg); transition:.25s; text-align:center; }
+    .soc-item { display:flex; flex-direction:column; align-items:center; gap:10px; padding:22px 16px; border:1px solid var(--gray-100); border-radius:var(--radius-lg); transition:.25s; text-align:center; text-decoration:none; color:inherit; }
     .soc-item:hover { border-color:var(--teal-100); box-shadow:var(--shadow); background:var(--gray-50); }
     .soc-item__logo { width:80px; height:60px; display:flex; align-items:center; justify-content:center; }
     .soc-item__logo img { max-width:100%; max-height:100%; object-fit:contain; filter:grayscale(30%); transition:.25s; }
@@ -698,28 +698,9 @@
       </div>
       <div class="club__visual">
         <!-- Tarjeta INFINITA -->
-        <div class="club__card-preview club__card-preview--a">
-          <div class="club__card-logo-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2C8 2 4 5.5 4 9.5c0 2.8 1.2 5 3.2 6.5L8.5 22h7l1.3-6C18.8 14.5 20 12.3 20 9.5 20 5.5 16 2 12 2z"/><path d="M9 10h6M12 7v6"/></svg>
-          </div>
-          <div class="club__card-brand">Banchs &amp; Rojas</div>
-          <div class="club__card-sub">Centros Dentales</div>
-          <div class="club__card-name">INFINITA</div>
-          <div class="club__card-seal">Garantía de Clínica · Club Dental</div>
-          <div class="club__card-url">www.centros-dentales.com</div>
-        </div>
+        <img src="https://www.centros-dentales.com/images/tarjetas-infinita.gif" alt="Tarjeta Infinita" class="club__card-img" />
         <!-- Tarjeta INFINITA FAMILY -->
-        <div class="club__card-preview club__card-preview--b">
-          <div class="club__card-logo-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M12 2C8 2 4 5.5 4 9.5c0 2.8 1.2 5 3.2 6.5L8.5 22h7l1.3-6C18.8 14.5 20 12.3 20 9.5 20 5.5 16 2 12 2z"/><path d="M9 10h6M12 7v6"/></svg>
-          </div>
-          <div class="club__card-brand">Banchs &amp; Rojas</div>
-          <div class="club__card-sub">Centros Dentales</div>
-          <div class="club__card-name">INFINITA</div>
-          <div class="club__card-family">family</div>
-          <div class="club__card-seal">Garantía de Clínica · Club Dental</div>
-          <div class="club__card-url">www.centros-dentales.com</div>
-        </div>
+        <img src="https://www.centros-dentales.com/images/tarjetas-infinita-family.gif" alt="Tarjeta Infinita Family" class="club__card-img" />
       </div>
     </div>
   </div>
@@ -764,121 +745,65 @@
     </div>
     <div class="sociedades__grid">
 
-      <div class="soc-item fade-up">
-        <div class="soc-item__logo">
-          <div style="text-align:center;">
-            <div class="soc-logo-text" style="color:#005A9C;font-size:22px;">CODS</div>
-            <div class="soc-logo-sub" style="color:#005A9C;">Colegio Oficial<br>Dentistas Sevilla</div>
-          </div>
-        </div>
+      <a href="https://www.dentistassevilla.com/" target="_blank" rel="noopener" class="soc-item fade-up">
+        <div class="soc-item__logo"><img src="https://www.centros-dentales.com/images/sociedades/logo1.jpg" alt="Colegio Oficial de Dentistas de Sevilla" /></div>
         <div class="soc-item__name">Colegio Oficial de Dentistas de Sevilla</div>
-      </div>
+      </a>
 
-      <div class="soc-item fade-up">
-        <div class="soc-item__logo">
-          <div style="text-align:center;">
-            <div class="soc-logo-text" style="color:#0077B6;font-size:20px;font-style:italic;">Sei</div>
-            <div class="soc-logo-sub" style="color:#0077B6;">Sociedad Española<br>de Implantes</div>
-          </div>
-        </div>
+      <a href="https://www.sociedadsei.com/" target="_blank" rel="noopener" class="soc-item fade-up">
+        <div class="soc-item__logo"><img src="https://www.centros-dentales.com/images/sociedades/logo2.jpg" alt="Sociedad Española de Implantes" /></div>
         <div class="soc-item__name">Sociedad Española de Implantes</div>
-      </div>
+      </a>
 
-      <div class="soc-item fade-up">
-        <div class="soc-item__logo">
-          <div style="text-align:center;">
-            <div class="soc-logo-text" style="color:#1a6b3a;font-size:18px;letter-spacing:.05em;">ICOI</div>
-            <div class="soc-logo-sub" style="color:#1a6b3a;">International Congress<br>Oral Implantologists</div>
-          </div>
-        </div>
+      <a href="https://www.icoi.org/" target="_blank" rel="noopener" class="soc-item fade-up">
+        <div class="soc-item__logo"><img src="https://www.centros-dentales.com/images/sociedades/logo3.jpg" alt="International Congress of Oral Implantologists" /></div>
         <div class="soc-item__name">International Congress of Oral Implantologists</div>
-      </div>
+      </a>
 
-      <div class="soc-item fade-up">
-        <div class="soc-item__logo">
-          <div style="text-align:center;">
-            <div class="soc-logo-text" style="color:#444;font-size:13px;font-weight:800;letter-spacing:0;">Academy of<br><span style="font-size:18px;color:#F5A31C;">General<br>Dentistry</span></div>
-          </div>
-        </div>
+      <a href="https://www.agd.org/" target="_blank" rel="noopener" class="soc-item fade-up">
+        <div class="soc-item__logo"><img src="https://www.centros-dentales.com/images/sociedades/logo4.jpg" alt="Academy of General Dentistry" /></div>
         <div class="soc-item__name">Academy of General Dentistry</div>
-      </div>
+      </a>
 
-      <div class="soc-item fade-up">
-        <div class="soc-item__logo">
-          <div style="text-align:center;">
-            <div class="soc-logo-text" style="color:#6B2D8B;font-size:12px;letter-spacing:.03em;">COLEGIO<br>CIRUJANOS<br>DENTISTAS</div>
-            <div class="soc-logo-sub" style="color:#6B2D8B;">Puerto Rico</div>
-          </div>
-        </div>
+      <a href="https://ccdpr.org/" target="_blank" rel="noopener" class="soc-item fade-up">
+        <div class="soc-item__logo"><img src="https://www.centros-dentales.com/images/sociedades/logo5.jpg" alt="Colegio de Cirujanos Dentistas de Puerto Rico" /></div>
         <div class="soc-item__name">Colegio de Cirujanos Dentistas de Puerto Rico</div>
-      </div>
+      </a>
 
-      <div class="soc-item fade-up">
-        <div class="soc-item__logo">
-          <div style="text-align:center;">
-            <div class="soc-logo-text" style="color:#0077B6;font-size:11px;line-height:1.3;">Instituto Panamericano<br>de Implantología<br>y Rehabilitación Oral®</div>
-          </div>
-        </div>
+      <a href="https://ipiroedu.com/" target="_blank" rel="noopener" class="soc-item fade-up">
+        <div class="soc-item__logo"><img src="https://www.centros-dentales.com/images/sociedades/logo6.jpg" alt="Instituto Panamericano de Implantología y Rehabilitación Oral" /></div>
         <div class="soc-item__name">Instituto Panamericano de Implantología y Rehabilitación Oral</div>
-      </div>
+      </a>
 
-      <div class="soc-item fade-up">
-        <div class="soc-item__logo">
-          <div style="text-align:center;">
-            <div class="soc-logo-text" style="color:#4A90A4;font-size:20px;letter-spacing:.1em;">SEPES</div>
-            <div class="soc-logo-sub" style="color:#4A90A4;">Soc. Española de Prótesis<br>Estomatológica y Estética</div>
-          </div>
-        </div>
+      <a href="https://www.sepes.org/" target="_blank" rel="noopener" class="soc-item fade-up">
+        <div class="soc-item__logo"><img src="https://www.centros-dentales.com/images/sociedades/logo7.jpg" alt="Sociedad Española de Prótesis Estomatológica y Estética" /></div>
         <div class="soc-item__name">Sociedad Española de Prótesis Estomatológica y Estética</div>
-      </div>
+      </a>
 
-      <div class="soc-item fade-up">
-        <div class="soc-item__logo">
-          <div style="text-align:center;">
-            <div class="soc-logo-text" style="color:#2E5055;font-size:22px;letter-spacing:.1em;">SEDA</div>
-            <div class="soc-logo-sub" style="color:#2E5055;">Soc. Española<br>de Alineadores</div>
-          </div>
-        </div>
+      <a href="https://seda.es/" target="_blank" rel="noopener" class="soc-item fade-up">
+        <div class="soc-item__logo"><img src="https://www.centros-dentales.com/images/sociedades/logo8.jpg" alt="Sociedad Española de Alineadores" /></div>
         <div class="soc-item__name">Sociedad Española de Alineadores</div>
-      </div>
+      </a>
 
-      <div class="soc-item fade-up">
-        <div class="soc-item__logo">
-          <div style="text-align:center;">
-            <div class="soc-logo-text" style="color:#003087;font-size:18px;">SEd<span style="color:#17C5CB;">O</span></div>
-            <div class="soc-logo-sub" style="color:#003087;">Soc. Española de<br>Ortodoncia</div>
-          </div>
-        </div>
+      <a href="http://www.sedo.es/" target="_blank" rel="noopener" class="soc-item fade-up">
+        <div class="soc-item__logo"><img src="https://www.centros-dentales.com/images/sociedades/logo9.jpg" alt="Sociedad Española de Ortodoncia y Ortopedia Dentofacial" /></div>
         <div class="soc-item__name">Sociedad Española de Ortodoncia y Ortopedia Dentofacial</div>
-      </div>
+      </a>
 
-      <div class="soc-item fade-up">
-        <div class="soc-item__logo">
-          <div style="text-align:center;">
-            <div class="soc-logo-text" style="color:#1a6b3a;font-size:17px;letter-spacing:.05em;">SEKMO</div>
-            <div class="soc-logo-sub" style="color:#1a6b3a;">Kinesiología Médica<br>Odontológica</div>
-          </div>
-        </div>
+      <a href="https://www.sekmo.es/" target="_blank" rel="noopener" class="soc-item fade-up">
+        <div class="soc-item__logo"><img src="https://www.centros-dentales.com/images/sociedades/logo10.jpg" alt="Sociedad Española de Kinesiología Médica Odontológica" /></div>
         <div class="soc-item__name">Sociedad Española de Kinesiología Médica Odontológica</div>
-      </div>
+      </a>
 
-      <div class="soc-item fade-up">
-        <div class="soc-item__logo">
-          <div style="text-align:center;">
-            <div class="soc-logo-text" style="color:#444;font-size:12px;line-height:1.3;">Asociación<br>Iberoamericana<br>de Ortodoncistas</div>
-          </div>
-        </div>
+      <a href="https://iberortodoncia.com/" target="_blank" rel="noopener" class="soc-item fade-up">
+        <div class="soc-item__logo"><img src="https://www.centros-dentales.com/images/sociedades/logo11.jpg" alt="Asociación Iberoamericana de Ortodoncistas" /></div>
         <div class="soc-item__name">Asociación Iberoamericana de Ortodoncistas</div>
-      </div>
+      </a>
 
-      <div class="soc-item fade-up">
-        <div class="soc-item__logo">
-          <div style="text-align:center;">
-            <div class="soc-logo-text" style="color:#6B2D8B;font-size:11px;line-height:1.4;letter-spacing:.02em;">International<br>Association<br>for<br><span style="font-size:14px;font-weight:900;">ORTHODONTICS</span></div>
-          </div>
-        </div>
+      <a href="https://www.iaortho.org/" target="_blank" rel="noopener" class="soc-item fade-up">
+        <div class="soc-item__logo"><img src="https://www.centros-dentales.com/images/sociedades/logo12.jpg" alt="International Association for Orthodontics" /></div>
         <div class="soc-item__name">International Association for Orthodontics</div>
-      </div>
+      </a>
 
     </div>
   </div>
