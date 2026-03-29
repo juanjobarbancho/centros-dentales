@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Odontología Conservadora | Centros Dentales Banchs & Rojas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --teal: #17C5CB;
+            --teal-dark: #0DA8AE;
+            --teal-900: #044E52;
+            --teal-50: #E7FAFB;
+            --teal-100: #C7F2F4;
+            --dark: #0e1f2b;
+            --gray-50: #F6FCFC;
+            --gray-100: #EAF5F6;
+            --gray-500: #6A8A8C;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #333;
+            line-height: 1.6;
+            background-color: #fff;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        }
+
+        .nav-logo {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--teal-900);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-center {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-center a {
+            color: #333;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-center a:hover {
+            color: var(--teal);
+        }
+
+        .nav-center a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--teal);
+            transition: width 0.3s ease;
+        }
+
+        .nav-center a:hover::after {
+            width: 100%;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-phone {
+            color: var(--teal);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+            color: white;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(23, 197, 203, 0.3);
+        }
+
+        /* BREADCRUMB */
+        .breadcrumb {
+            padding: 1.5rem 2rem;
+            margin-top: 80px;
+            background-color: var(--teal-50);
+            font-size: 0.95rem;
+            color: var(--gray-500);
+        }
+
+        .breadcrumb a {
+            color: var(--teal);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #044E52 0%, #0D9EA5 55%, #17C5CB 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-btn {
+            background-color: white;
+            color: var(--teal-900);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        /* INFO CARDS */
+        .info-section {
+            padding: 4rem 2rem;
+            background-color: var(--gray-50);
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            color: var(--teal-900);
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-left: 4px solid var(--teal);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--teal-50);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--teal-900);
+        }
+
+        .card p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* PROCESO */
+        .proceso-section {
+            padding: 4rem 2rem;
+            background-color: white;
+        }
+
+        .proceso-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .paso {
+            text-align: center;
+            position: relative;
+        }
+
+        .paso::before {
+            content: attr(data-number);
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+            border-radius: 50%;
+            color: white;
+            font-weight: 700;
+            font-size: 1.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .paso h3 {
+            margin-top: 3rem;
+            font-size: 1.2rem;
+            color: var(--teal-900);
+            margin-bottom: 1rem;
+        }
+
+        .paso p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        /* FAQ */
+        .faq-section {
+            padding: 4rem 2rem;
+            background-color: var(--gray-50);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            margin-bottom: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--teal-900);
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background-color: var(--teal-50);
+        }
+
+        .faq-icon {
+            width: 24px;
+            height: 24px;
+            color: var(--teal);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        /* CTA FINAL */
+        .cta-final {
+            background: linear-gradient(135deg, var(--teal-900) 0%, var(--teal-dark) 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .cta-final h2 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .phone-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .phone-box {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .phone-box p {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .phone-box a {
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .phone-box a:hover {
+            transform: scale(1.05);
+        }
+
+        /* FOOTER */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 3rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--teal);
+            font-weight: 600;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--teal);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(23, 197, 203, 0.2);
+            padding-top: 2rem;
+            text-align: center;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* WHATSAPP FLOTANTE */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 999;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .whatsapp-btn svg {
+            width: 30px;
+            height: 30px;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-center {
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+            }
+
+            .nav-right {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .cards-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .breadcrumb {
+                margin-top: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <a href="../index.html" class="nav-logo">Centros Dentales / Banchs & Rojas</a>
+        <ul class="nav-center">
+            <li><a href="../index.html#secciones">Inicio</a></li>
+            <li><a href="../index.html#secciones">Tratamientos</a></li>
+            <li><a href="../index.html#secciones">Clínicas</a></li>
+            <li><a href="../index.html#secciones">Contacto</a></li>
+        </ul>
+        <div class="nav-right">
+            <a href="tel:955914192" class="nav-phone">955 914 192</a>
+            <button class="nav-btn" onclick="window.location.href='https://www.centros-dentales.com/index.php?mod=contacto'">Pedir Cita</button>
+        </div>
+    </nav>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+        <a href="../index.html">Inicio</a> › <span>Odontología Conservadora</span>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <h1>Conserva tus dientes naturales con las mejores restauraciones</h1>
+        <p>Nuestro objetivo es preservar tu dentición natural el mayor tiempo posible. Restauraciones estéticas mínimamente invasivas con los materiales más avanzados y duraderos del mercado.</p>
+        <button class="hero-btn" onclick="window.location.href='https://www.centros-dentales.com/index.php?mod=contacto'">Pedir Cita Gratis</button>
+    </section>
+
+    <!-- INFO CARDS -->
+    <section class="info-section">
+        <h2 class="section-title">Nuestros Tratamientos</h2>
+        <div class="cards-grid">
+            <div class="card">
+                <div class="card-icon">🦷</div>
+                <h3>Obturaciones Estéticas</h3>
+                <p>Composite de última generación que imita el color y translucidez del diente. Sin amalgama, sin mercurio. Restauraciones que no se notan.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">✨</div>
+                <h3>Incrustaciones (Onlay/Inlay)</h3>
+                <p>Restauraciones de cerámica o composite fabricadas en el laboratorio para zonas con mayor destrucción. Más resistentes que las obturaciones directas.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔍</div>
+                <h3>Detección Precoz de Caries</h3>
+                <p>Utilizamos diagnóstico digital y sistemas de fluorescencia para detectar caries en estadios muy tempranos, cuando el tratamiento es mínimo.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>Tratamiento Mínimamente Invasivo</h3>
+                <p>Solo eliminamos el tejido infectado, conservando la mayor cantidad de diente sano posible. Menos tallado, menos molestia.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESO -->
+    <section class="proceso-section">
+        <h2 class="section-title">Proceso del Tratamiento</h2>
+        <div class="proceso-grid">
+            <div class="paso" data-number="1">
+                <h3>Diagnóstico y radiografía</h3>
+                <p>Evaluamos el estado del diente y realizamos radiografías para determinar la extensión de la caries.</p>
+            </div>
+            <div class="paso" data-number="2">
+                <h3>Anestesia local</h3>
+                <p>Aplicamos anestesia para que el procedimiento sea completamente indoloro y cómodo.</p>
+            </div>
+            <div class="paso" data-number="3">
+                <h3>Eliminación y restauración</h3>
+                <p>Retiramos la caries y restauramos el diente con material estético de máxima calidad.</p>
+            </div>
+            <div class="paso" data-number="4">
+                <h3>Pulido y ajuste</h3>
+                <p>Pulimos la restauración y ajustamos la mordida para un resultado perfecto y duradero.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq-section">
+        <h2 class="section-title">Preguntas Frecuentes</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Qué diferencia hay entre un empaste y una incrustación?</span>
+                    <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    El empaste se hace directamente en boca. La incrustación se fabrica en el laboratorio y es más resistente para zonas con mayor destrucción.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Duele quitar una caries?</span>
+                    <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    No. Se realiza siempre con anestesia local para que el procedimiento sea completamente indoloro.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Cuánto duran los empastes de composite?</span>
+                    <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    Entre 5 y 10 años con buena higiene, aunque puede ser más si el diente no sufre mucha carga.
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>¿Es malo tener un empaste de amalgama?</span>
+                    <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </div>
+                <div class="faq-answer">
+                    No es peligroso, pero recomendamos sustituirlos por composite por estética y porque la amalgama puede generar microfracturas con el tiempo.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final">
+        <h2>¿Listo para cuidar tu sonrisa?</h2>
+        <div class="phone-grid">
+            <div class="phone-box">
+                <p>Clínica Estepa</p>
+                <a href="tel:955914192">955 914 192</a>
+            </div>
+            <div class="phone-box">
+                <p>Clínica Herrera</p>
+                <a href="tel:954012464">954 012 464</a>
+            </div>
+            <div class="phone-box">
+                <p>Clínica Lucena</p>
+                <a href="tel:957591857">957 591 857</a>
+            </div>
+        </div>
+        <button class="hero-btn" onclick="window.location.href='https://www.centros-dentales.com/index.php?mod=contacto'">Pedir Cita</button>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Tratamientos</h4>
+                <ul>
+                    <li><a href="odontologia-conservadora.html">Odontología Conservadora</a></li>
+                    <li><a href="odontopediatria.html">Odontopediatría</a></li>
+                    <li><a href="bruxismo-atm.html">Bruxismo y ATM</a></li>
+                    <li><a href="cirugia-bucal.html">Cirugía Bucal</a></li>
+                    <li><a href="estetica-facial.html">Estética Facial</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Clínicas</h4>
+                <ul>
+                    <li><a href="">Estepa</a></li>
+                    <li><a href="">Herrera</a></li>
+                    <li><a href="">Lucena</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Contacto</h4>
+                <ul>
+                    <li><a href="tel:955914192">955 914 192 (Estepa)</a></li>
+                    <li><a href="tel:954012464">954 012 464 (Herrera)</a></li>
+                    <li><a href="tel:957591857">957 591 857 (Lucena)</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Centros Dentales Banchs & Rojas. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLOTANTE -->
+    <a href="https://wa.me/34609509869" class="whatsapp-btn" target="_blank">
+        <svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.946 1.347l-.355.206-.368-.061c-1.286-.113-2.514-.504-3.635-1.162l-.204-.123-.212.039c-.667.192-1.3.507-1.872.96L2 5.348C2 2.401 4.25.222 7.041.222c2.791 0 5.041 2.179 5.041 4.867.001 2.687-2.25 4.865-5.041 4.865z"/>
+        </svg>
+    </a>
+
+    <!-- SCRIPT NAVBAR SCROLL -->
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // FAQ Toggle
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const item = this.parentElement;
+                item.classList.toggle('active');
+            });
+        });
+    </script>
+</body>
+</html>

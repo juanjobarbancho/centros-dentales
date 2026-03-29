@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rehabilitación Oral | Centros Dentales Banchs & Rojas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    :root {
+      --teal: #17C5CB;
+      --teal-dark: #0DA8AE;
+      --teal-900: #044E52;
+      --teal-800: #076468;
+      --teal-50: #E7FAFB;
+      --teal-100: #C7F2F4;
+      --white: #FFFFFF;
+      --dark: #0e1f2b;
+      --gray-50: #F6FCFC;
+      --gray-100: #EAF5F6;
+      --gray-500: #6A8A8C;
+      --gray-700: #2E5055;
+      --radius: 14px;
+      --radius-lg: 24px;
+      --shadow: 0 4px 24px rgba(23,197,203,.13);
+      --shadow-lg: 0 12px 48px rgba(23,197,203,.18);
+      --shadow-xl: 0 24px 72px rgba(23,197,203,.22);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: var(--white);
+      border-bottom: 1px solid transparent;
+      transition: all 0.3s ease;
+    }
+
+    .nav.scrolled {
+      background: var(--white);
+      border-bottom-color: var(--teal-50);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      flex-shrink: 0;
+    }
+
+    .nav__logo-mark {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .nav__logo-name {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.2;
+    }
+
+    .nav__logo-sub {
+      display: block;
+      font-size: 11px;
+      color: var(--gray-500);
+      font-weight: 500;
+    }
+
+    .nav__links {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+      flex: 1;
+    }
+
+    .nav__links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      font-size: 15px;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .nav__links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: var(--teal);
+      transition: width 0.3s ease;
+    }
+
+    .nav__links a:hover {
+      color: var(--teal);
+    }
+
+    .nav__links a:hover::after {
+      width: 100%;
+    }
+
+    .nav__right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .nav__tel {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 600;
+      font-size: 14px;
+      transition: color 0.3s ease;
+    }
+
+    .nav__tel:hover {
+      color: var(--teal);
+    }
+
+    .btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius);
+      border: none;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    /* BREADCRUMB */
+    .breadcrumb {
+      max-width: 1200px;
+      margin: 6rem auto 1rem;
+      padding: 0 2rem;
+      font-size: 14px;
+      color: var(--gray-500);
+    }
+
+    .breadcrumb a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+
+    .breadcrumb a:hover {
+      text-decoration: underline;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, var(--teal-900) 0%, var(--teal-800) 100%);
+      color: var(--white);
+      padding: 5rem 2rem;
+      text-align: center;
+      min-height: 500px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 56px);
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: rgba(255, 255, 255, 0.9);
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.8;
+      font-weight: 400;
+    }
+
+    .hero .btn {
+      background: var(--white);
+      color: var(--teal-900);
+      margin: 0 auto;
+    }
+
+    .hero .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+    }
+
+    /* SECTION */
+    section {
+      padding: 4rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 3rem;
+      text-align: center;
+      color: var(--dark);
+    }
+
+    /* CARDS GRID */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .card {
+      background: var(--gray-50);
+      padding: 2rem;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--teal-100);
+      transition: all 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-xl);
+      border-color: var(--teal);
+    }
+
+    .card-icon {
+      font-size: 36px;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+
+    .card p {
+      font-size: 14px;
+      color: var(--gray-700);
+      line-height: 1.7;
+    }
+
+    /* PROCESO */
+    .proceso {
+      background: var(--teal-50);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      margin: 3rem 0;
+    }
+
+    .proceso-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .step {
+      text-align: center;
+      padding: 1.5rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      border-left: 4px solid var(--teal);
+    }
+
+    .step-number {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--teal);
+      margin-bottom: 0.5rem;
+    }
+
+    .step p {
+      font-size: 14px;
+      color: var(--gray-700);
+      font-weight: 600;
+    }
+
+    /* FAQ */
+    .faq-section {
+      margin: 3rem 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--teal-50);
+      padding: 1.5rem 0;
+    }
+
+    .faq-question {
+      font-weight: 700;
+      font-size: 16px;
+      color: var(--dark);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-toggle {
+      font-size: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-item.active .faq-toggle {
+      transform: rotate(180deg);
+    }
+
+    .faq-answer {
+      display: none;
+      font-size: 14px;
+      color: var(--gray-700);
+      margin-top: 1rem;
+      line-height: 1.8;
+    }
+
+    .faq-item.active .faq-answer {
+      display: block;
+    }
+
+    /* CTA FINAL */
+    .cta-final {
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      color: var(--white);
+      padding: 3rem 2rem;
+      text-align: center;
+      border-radius: var(--radius-lg);
+      margin: 3rem 0;
+    }
+
+    .cta-final h2 {
+      font-size: 32px;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+    }
+
+    .cta-phones {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .cta-phone {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .cta-phone-label {
+      font-size: 12px;
+      opacity: 0.8;
+      margin-bottom: 0.5rem;
+    }
+
+    .cta-phone-number {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .cta-phone-number:hover {
+      text-decoration: underline;
+    }
+
+    .cta-final .btn {
+      background: var(--white);
+      color: var(--teal);
+    }
+
+    .cta-final .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--teal-900);
+      color: var(--white);
+      padding: 3rem 2rem 1.5rem;
+      margin-top: 4rem;
+    }
+
+    .footer__inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .footer__brand-name {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer__brand p {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.7);
+      line-height: 1.6;
+    }
+
+    .footer__col-title {
+      font-weight: 700;
+      font-size: 14px;
+      margin-bottom: 1rem;
+    }
+
+    .footer__links {
+      list-style: none;
+    }
+
+    .footer__links li {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer__links a {
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 13px;
+      transition: color 0.3s ease;
+    }
+
+    .footer__links a:hover {
+      color: var(--teal);
+    }
+
+    .footer__bottom {
+      text-align: center;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .footer__bottom a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+
+    .footer__bottom a:hover {
+      text-decoration: underline;
+    }
+
+    /* WHATSAPP BUTTON */
+    .wa-btn {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      width: 56px;
+      height: 56px;
+      background: #25d366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      font-size: 28px;
+      z-index: 999;
+      box-shadow: var(--shadow-lg);
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .wa-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 12px 48px rgba(37, 211, 102, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      .nav__inner {
+        padding: 1rem;
+        gap: 1rem;
+      }
+
+      .nav__links {
+        display: none;
+      }
+
+      .nav__right {
+        gap: 0.75rem;
+      }
+
+      .nav__tel {
+        display: none;
+      }
+
+      .hero {
+        padding: 3rem 1.5rem;
+        min-height: auto;
+      }
+
+      .hero h1 {
+        font-size: 28px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .section-title {
+        font-size: 28px;
+      }
+
+      .proceso-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-phones {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .footer__inner {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .wa-btn {
+        width: 48px;
+        height: 48px;
+        font-size: 24px;
+        bottom: 1.5rem;
+        right: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav__inner">
+      <a href="../index.html" class="nav__logo">
+        <div class="nav__logo-mark">🦷</div>
+        <div><span class="nav__logo-name">Centros Dentales</span><span class="nav__logo-sub">Banchs & Rojas</span></div>
+      </a>
+      <ul class="nav__links">
+        <li><a href="../index.html#tratamientos">Tratamientos</a></li>
+        <li><a href="../index.html#nosotros">Nosotros</a></li>
+        <li><a href="../index.html#clinicas">Clínicas</a></li>
+        <li><a href="../index.html#club">Club Dental</a></li>
+      </ul>
+      <div class="nav__right">
+        <a href="tel:955914192" class="nav__tel">📞 955 914 192</a>
+        <a href="https://www.centros-dentales.com/index.php?mod=contacto" class="btn btn-primary" target="_blank">Pedir Cita</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="../index.html">Inicio</a> › Rehabilitación Oral
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <h1>Rehabilitación Oral — Recupera tu función y estética completa</h1>
+    <p>Diseñamos rehabilitaciones completas para bocas con pérdidas múltiples o totales de dientes. Prótesis de alta estética, coronas de circonio y soluciones sobre implantes.</p>
+    <a href="https://www.centros-dentales.com/index.php?mod=contacto" class="btn btn-primary" target="_blank">Pedir Cita Gratis</a>
+  </div>
+
+  <!-- INFORMACIÓN GENERAL -->
+  <section>
+    <h2 class="section-title">Soluciones de rehabilitación oral</h2>
+    <div class="cards-grid">
+      <div class="card">
+        <span class="card-icon">👑</span>
+        <h3>Coronas de Circonio</h3>
+        <p>Sin metal, máxima estética y resistencia. Las coronas de circonio se integran perfectamente con el color y translucidez del diente natural.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🦷</span>
+        <h3>Prótesis Sobre Implantes</h3>
+        <p>Las sobredentaduras y prótesis fijas sobre implantes ofrecen la mejor retención, comodidad y estética para pacientes sin dientes.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔄</span>
+        <h3>All-on-4 / All-on-6</h3>
+        <p>Rehabilitación completa de toda una arcada con solo 4 ó 6 implantes. Dientes fijos desde el primer día.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📋</span>
+        <h3>Planificación Digital</h3>
+        <p>Diseñamos la rehabilitación completamente en digital antes de ejecutarla, logrando resultados predecibles y de alta calidad estética.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section>
+    <h2 class="section-title">El proceso paso a paso</h2>
+    <div class="proceso">
+      <div class="proceso-steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <p>Valoración y Diagnóstico</p>
+        </div>
+        <div style="text-align: center; color: var(--teal); font-weight: bold;">→</div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <p>Diseño Digital</p>
+        </div>
+        <div style="text-align: center; color: var(--teal); font-weight: bold;">→</div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <p>Fase Protésica Progresiva</p>
+        </div>
+        <div style="text-align: center; color: var(--teal); font-weight: bold;">→</div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <p>Resultado Definitivo</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section>
+    <h2 class="section-title">Preguntas frecuentes</h2>
+    <div class="faq-section">
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>¿Cuánto dura una corona de circonio?</span>
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">Con buenos cuidados puede durar 15-20 años o más.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>¿Se nota que son postizos?</span>
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">No. Las prótesis actuales imitan a la perfección el aspecto de los dientes naturales.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>¿Cuánto tiempo lleva una rehabilitación completa?</span>
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">Depende del plan, puede ser de 3 a 12 meses.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question">
+          <span>¿Puedo comer con normalidad?</span>
+          <span class="faq-toggle">▼</span>
+        </div>
+        <div class="faq-answer">Sí. Las prótesis sobre implantes permiten masticar con total normalidad.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section>
+    <div class="cta-final">
+      <h2>¿Necesitas recuperar tu sonrisa completa?</h2>
+      <p style="margin-bottom: 1.5rem; font-size: 16px;">Llama a cualquiera de nuestras clínicas para una consulta inicial sin costo.</p>
+      <div class="cta-phones">
+        <div class="cta-phone">
+          <span class="cta-phone-label">Estepa</span>
+          <a href="tel:955914192" class="cta-phone-number">955 914 192</a>
+        </div>
+        <div class="cta-phone">
+          <span class="cta-phone-label">Herrera</span>
+          <a href="tel:954012464" class="cta-phone-number">954 012 464</a>
+        </div>
+        <div class="cta-phone">
+          <span class="cta-phone-label">Lucena</span>
+          <a href="tel:957591857" class="cta-phone-number">957 591 857</a>
+        </div>
+      </div>
+      <a href="https://www.centros-dentales.com/index.php?mod=contacto" class="btn btn-primary" target="_blank">Pedir Cita Gratis</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <div class="footer__brand-name">Centros Dentales Banchs & Rojas</div>
+        <p>Más de 30 años cuidando tu salud bucodental en Andalucía.</p>
+      </div>
+      <div>
+        <div class="footer__col-title">Clínicas</div>
+        <p style="font-size:13px;color:rgba(255,255,255,.55)">Estepa: 955 914 192<br>Herrera: 954 012 464<br>Lucena: 957 591 857</p>
+      </div>
+      <div>
+        <div class="footer__col-title">Tratamientos</div>
+        <ul class="footer__links">
+          <li><a href="implantologia.html">Implantología</a></li>
+          <li><a href="ortodoncia.html">Ortodoncia</a></li>
+          <li><a href="estetica-dental.html">Estética Dental</a></li>
+          <li><a href="endodoncia.html">Endodoncia</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom">© 2016–2026 Centros Dentales Banchs & Rojas · <a href="../index.html">Volver al inicio</a></div>
+  </footer>
+
+  <!-- WHATSAPP BUTTON -->
+  <a href="https://wa.me/34609509869" class="wa-btn" target="_blank" title="WhatsApp">💬</a>
+
+  <script>
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // FAQ Toggle
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.closest('.faq-item');
+        item.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
