@@ -578,6 +578,32 @@
             .ts-step__body { padding-top: 4px; }
         }
 
+    
+        /* Responsive: cards-grid en móvil */
+        @media (max-width: 768px) {
+            .cards-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .card {
+                padding: 1.5rem 1.25rem;
+            }
+            .card-icon {
+                width: 48px;
+                height: 48px;
+                margin-bottom: 0.75rem;
+            }
+            .card-icon svg { width: 24px; height: 24px; }
+            .card h3 {
+                font-size: 17px;
+                margin-bottom: 0.5rem;
+            }
+            .card p {
+                font-size: 14px;
+                line-height: 1.55;
+            }
+        }
+
     </style>
 </head>
 <body>
