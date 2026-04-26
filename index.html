@@ -166,7 +166,7 @@
       text-decoration:none;
       color:inherit;
       display:grid;
-      grid-template-columns:auto 1fr auto;
+      grid-template-columns:auto 1fr;
       align-items:center;
       gap:22px;
       isolation:isolate;
@@ -223,49 +223,42 @@
       overflow:hidden;
     }
     .treat-card:hover .treat-card__desc { color:rgba(255,255,255,.92); }
+    /* Pills convertidas en texto inline-coma simple — sin badges, menos ruido */
     .treat-card__pills {
       display:flex;
       flex-wrap:wrap;
-      gap:5px;
-      margin-top:4px;
+      gap:8px;
+      margin-top:6px;
+      font-size:11px;
+      color:var(--teal-dark);
+      font-weight:500;
+      letter-spacing:.01em;
     }
     .treat-card__pill {
-      font-size:11px;
-      font-weight:600;
-      background:var(--teal-50);
-      color:var(--teal-dark);
-      padding:3px 10px;
-      border-radius:100px;
-      transition:background .3s ease, color .3s ease;
-      white-space:nowrap;
+      position:relative;
+      padding-right:9px;
+      transition:color .3s ease;
     }
-    .treat-card:hover .treat-card__pill { background:rgba(255,255,255,.22); color:#fff; }
+    .treat-card__pill:not(:last-child)::after {
+      content:'·';
+      position:absolute;
+      right:0;
+      color:var(--gray-200);
+    }
+    .treat-card:hover .treat-card__pills { color:rgba(255,255,255,.85); }
+    .treat-card:hover .treat-card__pill::after { color:rgba(255,255,255,.4); }
 
-    .treat-card__arrow {
-      width:38px;
-      height:38px;
-      border-radius:50%;
-      background:var(--gray-50);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-shrink:0;
-      transition:background .3s ease, transform .3s ease;
-    }
-    .treat-card__arrow svg { width:16px; height:16px; color:var(--teal-dark); transition:color .3s ease, transform .3s ease; }
-    .treat-card:hover .treat-card__arrow { background:rgba(255,255,255,.22); }
-    .treat-card:hover .treat-card__arrow svg { color:#fff; transform:translateX(2px); }
+    /* Arrow eliminado — el card entero es link, no hace falta indicador */
+    .treat-card__arrow { display:none; }
 
     @media (max-width:960px) {
       .treatments__grid { grid-template-columns:1fr; gap:14px; }
     }
     @media (max-width:560px) {
       .treat-card {
-        grid-template-columns:auto 1fr;
         padding:18px 18px;
         gap:16px;
       }
-      .treat-card__arrow { display:none; }
       .treat-card__pills { display:none; }
       .treat-card__desc { -webkit-line-clamp:3; }
     }
@@ -771,7 +764,6 @@
           <div class="treat-card__desc">Recupera la estética de tu boca y vuelve a comer con normalidad gracias a implantes de última generación con cirugía mínimamente invasiva.</div>
           <div class="treat-card__pills"><span class="treat-card__pill">Implantes Dentales</span><span class="treat-card__pill">Carga Inmediata</span><span class="treat-card__pill">Injerto de Hueso</span></div>
         </div>
-        <div class="treat-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
 
       <a href="tratamientos/ortodoncia.html" class="treat-card fade-up">
@@ -781,7 +773,6 @@
           <div class="treat-card__desc">Alineamos tu sonrisa con la tecnología más discreta y efectiva, para adultos y niños, con los mejores resultados.</div>
           <div class="treat-card__pills"><span class="treat-card__pill">Ortodoncia Invisible</span><span class="treat-card__pill">Brackets Damon</span><span class="treat-card__pill">Ortodoncia Infantil</span></div>
         </div>
-        <div class="treat-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
 
       <a href="tratamientos/rehabilitacion-oral.html" class="treat-card fade-up">
@@ -791,7 +782,6 @@
           <div class="treat-card__desc">Restauramos tu función masticatoria y estética completa con las soluciones protésicas más avanzadas del mercado.</div>
           <div class="treat-card__pills"><span class="treat-card__pill">Coronas sin Metal</span><span class="treat-card__pill">Prótesis Completas</span><span class="treat-card__pill">Sobredentaduras</span></div>
         </div>
-        <div class="treat-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
 
       <a href="tratamientos/estetica-dental.html" class="treat-card fade-up">
@@ -801,7 +791,6 @@
           <div class="treat-card__desc">Diseño de sonrisa personalizado con las técnicas más innovadoras para resultados naturales, blanqueamiento y carillas.</div>
           <div class="treat-card__pills"><span class="treat-card__pill">Blanqueamiento</span><span class="treat-card__pill">Carillas</span><span class="treat-card__pill">Diseño Sonrisa</span></div>
         </div>
-        <div class="treat-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
 
       <a href="tratamientos/periodoncia.html" class="treat-card fade-up is-hidden">
@@ -811,7 +800,6 @@
           <div class="treat-card__desc">Diagnóstico y tratamiento de enfermedades de las encías. Salud periodontal para dientes fuertes y duraderos.</div>
           <div class="treat-card__pills"><span class="treat-card__pill">Gingivitis</span><span class="treat-card__pill">Periodontitis</span><span class="treat-card__pill">Mantenimiento</span></div>
         </div>
-        <div class="treat-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
 
       <a href="tratamientos/endodoncia.html" class="treat-card fade-up is-hidden">
@@ -821,7 +809,6 @@
           <div class="treat-card__desc">Tratamiento de conductos con las técnicas más avanzadas para salvar dientes comprometidos sin dolor y con total garantía.</div>
           <div class="treat-card__pills"><span class="treat-card__pill">Conductos</span><span class="treat-card__pill">Sin Dolor</span><span class="treat-card__pill">Microcirugía</span></div>
         </div>
-        <div class="treat-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
 
       <a href="tratamientos/odontologia-conservadora.html" class="treat-card fade-up is-hidden">
@@ -831,7 +818,6 @@
           <div class="treat-card__desc">Restauraciones estéticas con las técnicas más precisas para conservar tu dentición natural el mayor tiempo posible.</div>
           <div class="treat-card__pills"><span class="treat-card__pill">Obturaciones</span><span class="treat-card__pill">Incrustaciones</span><span class="treat-card__pill">Resinas</span></div>
         </div>
-        <div class="treat-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
 
       <a href="tratamientos/odontopediatria.html" class="treat-card fade-up is-hidden">
@@ -841,7 +827,6 @@
           <div class="treat-card__desc">Cuidamos la salud dental de los más pequeños en un ambiente acogedor y sin miedo, desde los primeros dientes de leche.</div>
           <div class="treat-card__pills"><span class="treat-card__pill">Revisiones</span><span class="treat-card__pill">Selladores</span><span class="treat-card__pill">Ortodoncia Infantil</span></div>
         </div>
-        <div class="treat-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
 
       <a href="tratamientos/bruxismo-atm.html" class="treat-card fade-up is-hidden">
@@ -851,7 +836,6 @@
           <div class="treat-card__desc">Diagnóstico y tratamiento del rechinamiento dental y los trastornos de la articulación temporomandibular.</div>
           <div class="treat-card__pills"><span class="treat-card__pill">Férulas</span><span class="treat-card__pill">Fisioterapia</span><span class="treat-card__pill">ATM</span></div>
         </div>
-        <div class="treat-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
 
       <a href="tratamientos/cirugia-bucal.html" class="treat-card fade-up is-hidden">
@@ -861,7 +845,6 @@
           <div class="treat-card__desc">Extracciones, cordales y cirugías orales con técnicas mínimamente invasivas para mayor comodidad y recuperación rápida.</div>
           <div class="treat-card__pills"><span class="treat-card__pill">Extracciones</span><span class="treat-card__pill">Cordales</span><span class="treat-card__pill">Mínima Invasión</span></div>
         </div>
-        <div class="treat-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
 
       <a href="tratamientos/estetica-facial.html" class="treat-card fade-up is-hidden">
@@ -871,7 +854,6 @@
           <div class="treat-card__desc">Complementamos tu sonrisa con tratamientos de medicina estética facial no invasivos para una imagen completa y rejuvenecida.</div>
           <div class="treat-card__pills"><span class="treat-card__pill">Bótox</span><span class="treat-card__pill">Ácido Hialurónico</span><span class="treat-card__pill">Rejuvenecimiento</span></div>
         </div>
-        <div class="treat-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
 
     </div>
