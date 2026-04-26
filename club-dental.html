@@ -16,6 +16,10 @@
             --gray-50: #F6FCFC;
             --gray-100: #EAF5F6;
             --gray-500: #6A8A8C;
+            --gold: #C9A23E;
+            --gold-light: #E2C880;
+            --gold-dark: #9F7E26;
+            --gold-gradient: linear-gradient(135deg, #E2C880 0%, #C9A23E 50%, #9F7E26 100%);
         }
 
         * {
@@ -138,6 +142,19 @@
             font-weight: 700;
             margin-bottom: 1rem;
             line-height: 1.2;
+            position: relative;
+            display: inline-block;
+        }
+
+        .hero h1::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 2px;
+            margin: 1.2rem auto 0;
+            background: var(--gold-gradient);
+            border-radius: 2px;
+            box-shadow: 0 0 12px rgba(226, 200, 128, 0.4);
         }
 
         .hero p {
