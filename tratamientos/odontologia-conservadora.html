@@ -200,10 +200,9 @@
 
         .cards-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
         }
 
         .card {
@@ -221,16 +220,17 @@
         }
 
         .card-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--teal-50);
-            border-radius: 10px;
-            display: flex;
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--teal-50), var(--teal-100));
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
+            color: var(--teal-dark);
+            margin-bottom: 1.2rem;
         }
+        .card-icon svg { width: 28px; height: 28px; }
 
         .card h3 {
             font-size: 1.3rem;
@@ -245,53 +245,17 @@
         }
 
         /* PROCESO */
-        .proceso-section {
-            padding: 4rem 2rem;
-            background-color: white;
-        }
+        
 
-        .proceso-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
+        
 
-        .paso {
-            text-align: center;
-            position: relative;
-        }
+        
 
-        .paso::before {
-            content: attr(data-number);
-            position: absolute;
-            top: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
-            border-radius: 50%;
-            color: white;
-            font-weight: 700;
-            font-size: 1.8rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        
 
-        .paso h3 {
-            margin-top: 3rem;
-            font-size: 1.2rem;
-            color: var(--teal-900);
-            margin-bottom: 1rem;
-        }
+        
 
-        .paso p {
-            color: #666;
-            font-size: 0.95rem;
-        }
+        
 
         /* FAQ */
         .faq-section {
@@ -508,13 +472,112 @@
             }
 
             .cards-grid {
-                grid-template-columns: 1fr;
-            }
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
 
             .breadcrumb {
                 margin-top: 200px;
             }
         }
+    
+/* PROCESO - timeline horizontal simétrico */
+        .proceso, .proceso-section {
+            background: linear-gradient(135deg, var(--teal-50) 0%, #F0FBFC 100%);
+            border-radius: var(--radius-lg, 24px);
+            padding: 3.5rem 2rem;
+            margin: 3rem 0;
+        }
+        .proceso-section { background: white; padding: 4rem 2rem; }
+        .proceso-section .proceso-timeline-wrap {
+            background: linear-gradient(135deg, var(--teal-50) 0%, #F0FBFC 100%);
+            border-radius: var(--radius-lg, 24px);
+            padding: 3.5rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .proceso-timeline {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: 1fr;
+            gap: 1rem;
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem 0;
+        }
+        .proceso-timeline::before {
+            content: '';
+            position: absolute;
+            top: 36px;
+            left: 8%;
+            right: 8%;
+            height: 3px;
+            background: linear-gradient(to right, var(--teal), var(--teal-dark));
+            z-index: 0;
+            border-radius: 2px;
+        }
+        .ts-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 0 0.5rem;
+        }
+        .ts-step__node {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+            color: white;
+            font-size: 22px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            box-shadow: 0 6px 16px rgba(23, 197, 203, 0.35);
+            border: 4px solid #F0FBFC;
+        }
+        .ts-step__title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--teal-900);
+            line-height: 1.4;
+            margin-bottom: 0.4rem;
+        }
+        .ts-step__desc {
+            font-size: 12px;
+            color: var(--gray-500, #6A8A8C);
+            line-height: 1.5;
+        }
+        @media (max-width: 768px) {
+            .proceso-timeline {
+                grid-auto-flow: row;
+                grid-auto-columns: auto;
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+            .proceso-timeline::before {
+                top: 28px;
+                bottom: 28px;
+                left: 28px;
+                right: auto;
+                width: 3px;
+                height: auto;
+            }
+            .ts-step {
+                display: grid;
+                grid-template-columns: 56px 1fr;
+                gap: 1rem;
+                text-align: left;
+                align-items: flex-start;
+            }
+            .ts-step__node { margin: 0; }
+            .ts-step__body { padding-top: 4px; }
+        }
+
     </style>
 </head>
 <body>
@@ -550,22 +613,22 @@
         <h2 class="section-title">Nuestros Tratamientos</h2>
         <div class="cards-grid">
             <div class="card">
-                <div class="card-icon">🦷</div>
+                <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c-3.5 0-6 2.5-6 5.5 0 1.6.4 2.7 1 4 1.4 3 .8 4.5 1.2 7 .2 1.5.8 3.5 2.3 3.5s1.4-2 1.5-4c.1-1 .5-2 1-2s.9 1 1 2c.1 2 0 4 1.5 4s2.1-2 2.3-3.5c.4-2.5-.2-4 1.2-7 .6-1.3 1-2.4 1-4 0-3-2.5-5.5-6-5.5z"/></svg></div>
                 <h3>Obturaciones Estéticas</h3>
                 <p>Composite de última generación que imita el color y translucidez del diente. Sin amalgama, sin mercurio. Restauraciones que no se notan.</p>
             </div>
             <div class="card">
-                <div class="card-icon">✨</div>
+                <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.6 4.7L18 9l-4.4 1.3L12 15l-1.6-4.7L6 9l4.4-1.3z"/><path d="M19 14l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/><path d="M5 17l.5 1.5 1.5.5-1.5.5L5 21l-.5-1.5L3 19l1.5-.5z"/></svg></div>
                 <h3>Incrustaciones (Onlay/Inlay)</h3>
                 <p>Restauraciones de cerámica o composite fabricadas en el laboratorio para zonas con mayor destrucción. Más resistentes que las obturaciones directas.</p>
             </div>
             <div class="card">
-                <div class="card-icon">🔍</div>
+                <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16" y2="16"/></svg></div>
                 <h3>Detección Precoz de Caries</h3>
                 <p>Utilizamos diagnóstico digital y sistemas de fluorescencia para detectar caries en estadios muy tempranos, cuando el tratamiento es mínimo.</p>
             </div>
             <div class="card">
-                <div class="card-icon">⚡</div>
+                <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
                 <h3>Tratamiento Mínimamente Invasivo</h3>
                 <p>Solo eliminamos el tejido infectado, conservando la mayor cantidad de diente sano posible. Menos tallado, menos molestia.</p>
             </div>
@@ -575,23 +638,37 @@
     <!-- PROCESO -->
     <section class="proceso-section">
         <h2 class="section-title">Proceso del Tratamiento</h2>
-        <div class="proceso-grid">
-            <div class="paso" data-number="1">
-                <h3>Diagnóstico y radiografía</h3>
-                <p>Evaluamos el estado del diente y realizamos radiografías para determinar la extensión de la caries.</p>
+        <div class="proceso-timeline-wrap">
+            <div class="proceso-timeline">
+                        <div class="ts-step">
+                <div class="ts-step__node">1</div>
+                <div class="ts-step__body">
+                    <div class="ts-step__title">Diagnóstico y radiografía</div>
+                    <div class="ts-step__desc">Evaluamos el estado del diente y realizamos radiografías para determinar la extensión de la caries.</div>
+                </div>
             </div>
-            <div class="paso" data-number="2">
-                <h3>Anestesia local</h3>
-                <p>Aplicamos anestesia para que el procedimiento sea completamente indoloro y cómodo.</p>
+                        <div class="ts-step">
+                <div class="ts-step__node">2</div>
+                <div class="ts-step__body">
+                    <div class="ts-step__title">Anestesia local</div>
+                    <div class="ts-step__desc">Aplicamos anestesia para que el procedimiento sea completamente indoloro y cómodo.</div>
+                </div>
             </div>
-            <div class="paso" data-number="3">
-                <h3>Eliminación y restauración</h3>
-                <p>Retiramos la caries y restauramos el diente con material estético de máxima calidad.</p>
+                        <div class="ts-step">
+                <div class="ts-step__node">3</div>
+                <div class="ts-step__body">
+                    <div class="ts-step__title">Eliminación y restauración</div>
+                    <div class="ts-step__desc">Retiramos la caries y restauramos el diente con material estético de máxima calidad.</div>
+                </div>
             </div>
-            <div class="paso" data-number="4">
-                <h3>Pulido y ajuste</h3>
-                <p>Pulimos la restauración y ajustamos la mordida para un resultado perfecto y duradero.</p>
+                        <div class="ts-step">
+                <div class="ts-step__node">4</div>
+                <div class="ts-step__body">
+                    <div class="ts-step__title">Pulido y ajuste</div>
+                    <div class="ts-step__desc">Pulimos la restauración y ajustamos la mordida para un resultado perfecto y duradero.</div>
+                </div>
             </div>
+                    </div>
         </div>
     </section>
 

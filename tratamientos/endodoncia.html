@@ -85,6 +85,7 @@
       flex-shrink: 0;
     }
 
+    .nav__logo-mark svg { width: 22px; height: 22px; }
     .nav__logo-mark {
       width: 40px;
       height: 40px;
@@ -94,7 +95,7 @@
       align-items: center;
       justify-content: center;
       color: var(--white);
-      font-size: 20px;
+      
       font-weight: bold;
     }
 
@@ -264,11 +265,11 @@
 
     /* CARDS GRID */
     .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
 
     .card {
       background: var(--gray-50);
@@ -285,10 +286,17 @@
     }
 
     .card-icon {
-      font-size: 36px;
-      margin-bottom: 1rem;
-      display: block;
-    }
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, var(--teal-50), var(--teal-100));
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--teal-dark);
+            margin-bottom: 1.2rem;
+        }
+        .card-icon svg { width: 28px; height: 28px; }
 
     .card h3 {
       font-size: 18px;
@@ -304,40 +312,15 @@
     }
 
     /* PROCESO */
-    .proceso {
-      background: var(--teal-50);
-      border-radius: var(--radius-lg);
-      padding: 3rem;
-      margin: 3rem 0;
-    }
+    
 
-    .proceso-steps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
-      align-items: center;
-    }
+    
 
-    .step {
-      text-align: center;
-      padding: 1.5rem;
-      background: var(--white);
-      border-radius: var(--radius);
-      border-left: 4px solid var(--teal);
-    }
+    
 
-    .step-number {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--teal);
-      margin-bottom: 0.5rem;
-    }
+    
 
-    .step p {
-      font-size: 14px;
-      color: var(--gray-700);
-      font-weight: 600;
-    }
+    
 
     /* FAQ */
     .faq-section {
@@ -568,9 +551,7 @@
         font-size: 28px;
       }
 
-      .proceso-steps {
-        grid-template-columns: 1fr;
-      }
+      
 
       .cta-phones {
         flex-direction: column;
@@ -590,14 +571,110 @@
         right: 1.5rem;
       }
     }
-  </style>
+  
+/* PROCESO - timeline horizontal simétrico */
+        .proceso, .proceso-section {
+            background: linear-gradient(135deg, var(--teal-50) 0%, #F0FBFC 100%);
+            border-radius: var(--radius-lg, 24px);
+            padding: 3.5rem 2rem;
+            margin: 3rem 0;
+        }
+        .proceso-section { background: white; padding: 4rem 2rem; }
+        .proceso-section .proceso-timeline-wrap {
+            background: linear-gradient(135deg, var(--teal-50) 0%, #F0FBFC 100%);
+            border-radius: var(--radius-lg, 24px);
+            padding: 3.5rem 2rem;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .proceso-timeline {
+            display: grid;
+            grid-auto-flow: column;
+            grid-auto-columns: 1fr;
+            gap: 1rem;
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 1rem 0;
+        }
+        .proceso-timeline::before {
+            content: '';
+            position: absolute;
+            top: 36px;
+            left: 8%;
+            right: 8%;
+            height: 3px;
+            background: linear-gradient(to right, var(--teal), var(--teal-dark));
+            z-index: 0;
+            border-radius: 2px;
+        }
+        .ts-step {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 0 0.5rem;
+        }
+        .ts-step__node {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+            color: white;
+            font-size: 22px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            box-shadow: 0 6px 16px rgba(23, 197, 203, 0.35);
+            border: 4px solid #F0FBFC;
+        }
+        .ts-step__title {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--teal-900);
+            line-height: 1.4;
+            margin-bottom: 0.4rem;
+        }
+        .ts-step__desc {
+            font-size: 12px;
+            color: var(--gray-500, #6A8A8C);
+            line-height: 1.5;
+        }
+        @media (max-width: 768px) {
+            .proceso-timeline {
+                grid-auto-flow: row;
+                grid-auto-columns: auto;
+                grid-template-columns: 1fr;
+                gap: 1.25rem;
+            }
+            .proceso-timeline::before {
+                top: 28px;
+                bottom: 28px;
+                left: 28px;
+                right: auto;
+                width: 3px;
+                height: auto;
+            }
+            .ts-step {
+                display: grid;
+                grid-template-columns: 56px 1fr;
+                gap: 1rem;
+                text-align: left;
+                align-items: flex-start;
+            }
+            .ts-step__node { margin: 0; }
+            .ts-step__body { padding-top: 4px; }
+        }
+
+    </style>
 </head>
 <body>
   <!-- NAV -->
   <nav class="nav" id="nav">
     <div class="nav__inner">
       <a href="../index.html" class="nav__logo">
-        <div class="nav__logo-mark">🦷</div>
+        <div class="nav__logo-mark"><svg viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M12 2c-3 0-5 2-5 4.5 0 1.3.4 2.3.9 3.4 1.2 2.5.7 3.8 1 5.9.2 1.3.7 3 2 3s1.2-1.7 1.3-3.4c.1-.9.4-1.7.8-1.7s.7.8.8 1.7c.1 1.7 0 3.4 1.3 3.4s1.8-1.7 2-3c.3-2.1-.2-3.4 1-5.9.5-1.1.9-2.1.9-3.4C17 4 15 2 12 2z"/></svg></div>
         <div><span class="nav__logo-name">Centros Dentales</span><span class="nav__logo-sub">Banchs & Rojas</span></div>
       </a>
       <ul class="nav__links">
@@ -630,22 +707,22 @@
     <h2 class="section-title">Soluciones en endodoncia</h2>
     <div class="cards-grid">
       <div class="card">
-        <span class="card-icon">🔬</span>
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18h12"/><path d="M9 18l3-7 3 7"/><circle cx="12" cy="6" r="2.5"/><line x1="12" y1="8.5" x2="12" y2="11"/></svg></span>
         <h3>¿Qué es la Endodoncia?</h3>
         <p>Limpieza y sellado de los conductos radiculares cuando la pulpa dental (nervio) está infectada o necrosada, conservando el diente.</p>
       </div>
       <div class="card">
-        <span class="card-icon">⚙️</span>
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></span>
         <h3>Tecnología Rotatoria</h3>
         <p>Utilizamos limas de níquel-titanio de última generación que limpian los conductos de forma más eficaz, rápida y segura que los sistemas manuales.</p>
       </div>
       <div class="card">
-        <span class="card-icon">🎯</span>
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5" fill="currentColor"/></svg></span>
         <h3>Microcirugía Apical</h3>
         <p>Cuando la endodoncia convencional no es suficiente, la apicectomía permite resolver infecciones crónicas en la punta de la raíz sin extraer el diente.</p>
       </div>
       <div class="card">
-        <span class="card-icon">👑</span>
+        <span class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l3 9h12l3-9-5 4-4-7-4 7-5-4z"/><line x1="4" y1="20" x2="20" y2="20"/></svg></span>
         <h3>Post-tratamiento</h3>
         <p>Tras la endodoncia, el diente queda más frágil. Recomendamos protegerlo con una corona de circonio para garantizar su durabilidad a largo plazo.</p>
       </div>
@@ -655,24 +732,26 @@
   <!-- PROCESO -->
   <section>
     <h2 class="section-title">El proceso paso a paso</h2>
-    <div class="proceso">
-      <div class="proceso-steps">
-        <div class="step">
-          <div class="step-number">1</div>
-          <p>Diagnóstico Radiológico</p>
-        </div>
-        <div style="text-align: center; color: var(--teal); font-weight: bold;">→</div>
-        <div class="step">
-          <div class="step-number">2</div>
-          <p>Limpieza y Sellado (1-2 sesiones)</p>
-        </div>
-        <div style="text-align: center; color: var(--teal); font-weight: bold;">→</div>
-        <div class="step">
-          <div class="step-number">3</div>
-          <p>Corona de Protección</p>
-        </div>
-      </div>
-    </div>
+    <div class="proceso-timeline">
+                        <div class="ts-step">
+                <div class="ts-step__node">1</div>
+                <div class="ts-step__body">
+                    <div class="ts-step__title">Diagnóstico Radiológico</div>
+                </div>
+            </div>
+                        <div class="ts-step">
+                <div class="ts-step__node">2</div>
+                <div class="ts-step__body">
+                    <div class="ts-step__title">Limpieza y Sellado (1-2 sesiones)</div>
+                </div>
+            </div>
+                        <div class="ts-step">
+                <div class="ts-step__node">3</div>
+                <div class="ts-step__body">
+                    <div class="ts-step__title">Corona de Protección</div>
+                </div>
+            </div>
+                    </div>
   </section>
 
   <!-- FAQ -->
