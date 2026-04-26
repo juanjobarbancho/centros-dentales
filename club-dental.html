@@ -151,7 +151,7 @@
 
         /* TARJETAS SECTION */
         .tarjetas-section {
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             background: linear-gradient(135deg, #044E52 0%, #0A7A81 100%);
         }
 
@@ -159,119 +159,155 @@
             text-align: center;
             font-size: 2.2rem;
             font-weight: 700;
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
             color: white;
         }
 
         .tarjetas-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 3rem;
-            max-width: 1200px;
+            max-width: 1100px;
             margin: 0 auto;
         }
 
         .tarjeta-card {
-            perspective: 1000px;
-        }
-
-        .tarjeta-visual {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s ease;
-        }
-
-        .tarjeta-card:hover .tarjeta-visual {
-            transform: translateY(-8px);
-        }
-
-        .tarjeta-top {
-            padding: 2rem;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .tarjeta-logo-section {
-            text-align: center;
-            flex: 1;
-        }
-
-        .tarjeta-logo-text {
-            font-size: 0.8rem;
-            color: var(--gray-500);
-            margin-bottom: 0.5rem;
-        }
-
-        .tarjeta-clinic {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--teal-900);
-            letter-spacing: 1px;
-        }
-
-        .tarjeta-icon-tooth {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-        }
-
-        .tarjeta-bottom {
-            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
-            padding: 2rem;
-            color: white;
-            text-align: center;
-        }
-
-        .tarjeta-name {
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            margin-bottom: 0.5rem;
-        }
-
-        .tarjeta-name-family {
-            font-style: italic;
-            font-size: 1.1rem;
-            opacity: 0.9;
-            margin-bottom: 1rem;
-        }
-
-        .tarjeta-web {
-            font-size: 0.85rem;
-            opacity: 0.8;
-            margin-bottom: 1rem;
-        }
-
-        .tarjeta-seal {
-            display: inline-block;
-            border: 2px solid white;
-            border-radius: 50%;
-            width: 70px;
-            height: 70px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            font-size: 0.6rem;
-            text-align: center;
-            font-weight: 600;
         }
 
+        /* === TARJETA REAL (réplica fiel del diseño físico) === */
+        .tarjeta-fisica {
+            width: 100%;
+            max-width: 420px;
+            aspect-ratio: 600 / 400;
+            background: #fff;
+            border: 2px solid var(--teal);
+            border-radius: 22px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35), 0 6px 12px rgba(0, 0, 0, 0.2);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            font-family: 'Inter', sans-serif;
+            container-type: inline-size;
+        }
+
+        .tarjeta-card:hover .tarjeta-fisica {
+            transform: translateY(-10px) rotate(-1deg);
+            box-shadow: 0 28px 50px rgba(0, 0, 0, 0.45), 0 10px 18px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Cabecera blanca: logo diente + Banchs & Rojas */
+        .tarjeta-cabecera {
+            padding: 8% 6% 4%;
+            text-align: center;
+            background: #fff;
+        }
+
+        .tarjeta-logo-tooth {
+            width: 22%;
+            max-width: 80px;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .tarjeta-marca {
+            margin-top: 0.3em;
+            font-size: clamp(0.85rem, 2.4cqw, 1.15rem);
+            font-weight: 500;
+            color: var(--teal);
+            letter-spacing: 1px;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5em;
+        }
+
+        .tarjeta-marca::before,
+        .tarjeta-marca::after {
+            content: '';
+            width: 4px;
+            height: 4px;
+            background: var(--teal);
+            border-radius: 50%;
+            display: inline-block;
+        }
+
+        /* Cuerpo inferior: cambia según variante */
+        .tarjeta-cuerpo {
+            padding: 0 6% 6%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .tarjeta-texto {
+            flex: 1;
+            text-align: left;
+        }
+
+        .tarjeta-name {
+            font-size: clamp(2.4rem, 9cqw, 3.6rem);
+            font-weight: 800;
+            color: var(--teal);
+            letter-spacing: 1px;
+            line-height: 1;
+            font-family: 'Inter', sans-serif;
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.15em;
+        }
+
+        .tarjeta-name-family {
+            font-family: Georgia, 'Times New Roman', serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: 0.4em;
+            color: #4a5d62;
+            letter-spacing: 0;
+            margin-left: 0.05em;
+        }
+
+        .tarjeta-web {
+            margin-top: 0.3em;
+            font-size: clamp(0.75rem, 2.2cqw, 0.95rem);
+            color: #4a5d62;
+            letter-spacing: 0.3px;
+        }
+
+        /* Sello circular Garantía / Club dental */
+        .tarjeta-seal {
+            width: 24%;
+            max-width: 95px;
+            aspect-ratio: 1 / 1;
+            flex-shrink: 0;
+        }
+
+        /* === Variante "Infinita" (mitad inferior teal) === */
+        .tarjeta-fisica.variant-solid .tarjeta-cuerpo {
+            background: var(--teal);
+            padding: 4% 6%;
+            margin-top: 2%;
+        }
+
+        .tarjeta-fisica.variant-solid .tarjeta-name,
+        .tarjeta-fisica.variant-solid .tarjeta-web {
+            color: #fff;
+        }
+
+        /* Descripción debajo de la tarjeta */
         .tarjeta-description {
-            color: white;
+            color: #e6f7f8;
             font-size: 0.95rem;
             margin-top: 1.5rem;
             text-align: center;
-            padding: 0 2rem;
+            padding: 0 1rem;
+            max-width: 360px;
+            line-height: 1.5;
         }
 
         /* BENEFICIOS SECTION */
@@ -583,44 +619,112 @@
     <section class="tarjetas-section">
         <h2 class="section-title">Nuestras Tarjetas</h2>
         <div class="tarjetas-grid">
-            <!-- TARJETA INFINITA -->
+
+            <!-- =========================================================== -->
+            <!-- TARJETA INFINITA (variante con mitad inferior en teal)      -->
+            <!-- =========================================================== -->
             <div class="tarjeta-card">
-                <div class="tarjeta-visual">
-                    <div class="tarjeta-top">
-                        <div class="tarjeta-logo-section">
-                            <div class="tarjeta-logo-text">BANCHS & ROJAS</div>
-                            <div class="tarjeta-clinic">Centros Dentales</div>
-                        </div>
-                        <div class="tarjeta-icon-tooth">🦷</div>
+                <div class="tarjeta-fisica variant-solid" aria-label="Tarjeta Infinita">
+                    <div class="tarjeta-cabecera">
+                        <!-- Logo diente con arco -->
+                        <svg class="tarjeta-logo-tooth" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <!-- Arco abierto en la parte inferior -->
+                            <path d="M 18 60 A 35 35 0 1 1 82 60" fill="none" stroke="#17C5CB" stroke-width="3" stroke-linecap="round"/>
+                            <!-- Diente estilizado -->
+                            <path d="M 50 25
+                                     C 38 25, 30 32, 30 45
+                                     C 30 55, 33 62, 36 68
+                                     C 38 73, 40 78, 43 78
+                                     C 46 78, 47 72, 48 67
+                                     C 49 64, 51 64, 52 67
+                                     C 53 72, 54 78, 57 78
+                                     C 60 78, 62 73, 64 68
+                                     C 67 62, 70 55, 70 45
+                                     C 70 32, 62 25, 50 25 Z"
+                                  fill="#17C5CB"/>
+                            <!-- Brillo pequeño -->
+                            <ellipse cx="42" cy="38" rx="3" ry="5" fill="#fff" opacity="0.5"/>
+                        </svg>
+                        <div class="tarjeta-marca">BANCHS &amp; ROJAS</div>
                     </div>
-                    <div class="tarjeta-bottom">
-                        <div class="tarjeta-name">INFINITA</div>
-                        <div class="tarjeta-web">www.centros-dentales.com</div>
-                        <div class="tarjeta-seal">Club Dental Garantía de Clínica</div>
+                    <div class="tarjeta-cuerpo">
+                        <div class="tarjeta-texto">
+                            <div class="tarjeta-name">INFINITA</div>
+                            <div class="tarjeta-web">www.centros-dentales.com</div>
+                        </div>
+                        <!-- Sello circular -->
+                        <svg class="tarjeta-seal" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Sello Garantía de Clínica Club Dental">
+                            <defs>
+                                <path id="sello-top-solid" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0"/>
+                                <path id="sello-bot-solid" d="M 50,50 m -38,0 a 38,38 0 1,0 76,0"/>
+                            </defs>
+                            <circle cx="50" cy="50" r="46" fill="none" stroke="#fff" stroke-width="1.5"/>
+                            <circle cx="50" cy="50" r="38" fill="none" stroke="#fff" stroke-width="1"/>
+                            <text fill="#fff" font-family="Inter, sans-serif" font-size="8" font-weight="600" letter-spacing="0.5">
+                                <textPath href="#sello-top-solid" startOffset="50%" text-anchor="middle">GARANTÍA DE CLÍNICA</textPath>
+                            </text>
+                            <text fill="#fff" font-family="Inter, sans-serif" font-size="6" letter-spacing="0.3">
+                                <textPath href="#sello-bot-solid" startOffset="50%" text-anchor="middle">profesional y tecnológica</textPath>
+                            </text>
+                            <text x="50" y="46" fill="#fff" font-family="Inter, sans-serif" font-size="6" font-weight="500" text-anchor="middle">Club</text>
+                            <text x="50" y="58" fill="#fff" font-family="Georgia, serif" font-size="11" font-weight="700" font-style="italic" text-anchor="middle">dental</text>
+                        </svg>
                     </div>
                 </div>
-                <p class="tarjeta-description">La tarjeta Infinita es personal. Acceso único a todas nuestras ventajas y beneficios exclusivos del Club Dental.</p>
+                <p class="tarjeta-description">La tarjeta Infinita es personal. Acceso único a todas las ventajas y beneficios exclusivos del Club Dental.</p>
             </div>
 
-            <!-- TARJETA INFINITA FAMILY -->
+            <!-- =========================================================== -->
+            <!-- TARJETA INFINITA FAMILY (totalmente blanca)                 -->
+            <!-- =========================================================== -->
             <div class="tarjeta-card">
-                <div class="tarjeta-visual">
-                    <div class="tarjeta-top">
-                        <div class="tarjeta-logo-section">
-                            <div class="tarjeta-logo-text">BANCHS & ROJAS</div>
-                            <div class="tarjeta-clinic">Centros Dentales</div>
-                        </div>
-                        <div class="tarjeta-icon-tooth">🦷</div>
+                <div class="tarjeta-fisica" aria-label="Tarjeta Infinita Family">
+                    <div class="tarjeta-cabecera">
+                        <svg class="tarjeta-logo-tooth" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <path d="M 18 60 A 35 35 0 1 1 82 60" fill="none" stroke="#17C5CB" stroke-width="3" stroke-linecap="round"/>
+                            <path d="M 50 25
+                                     C 38 25, 30 32, 30 45
+                                     C 30 55, 33 62, 36 68
+                                     C 38 73, 40 78, 43 78
+                                     C 46 78, 47 72, 48 67
+                                     C 49 64, 51 64, 52 67
+                                     C 53 72, 54 78, 57 78
+                                     C 60 78, 62 73, 64 68
+                                     C 67 62, 70 55, 70 45
+                                     C 70 32, 62 25, 50 25 Z"
+                                  fill="#17C5CB"/>
+                            <ellipse cx="42" cy="38" rx="3" ry="5" fill="#fff" opacity="0.5"/>
+                        </svg>
+                        <div class="tarjeta-marca">BANCHS &amp; ROJAS</div>
                     </div>
-                    <div class="tarjeta-bottom">
-                        <div class="tarjeta-name">INFINITA</div>
-                        <div class="tarjeta-name-family">family</div>
-                        <div class="tarjeta-web">www.centros-dentales.com</div>
-                        <div class="tarjeta-seal">Club Dental Garantía de Clínica</div>
+                    <div class="tarjeta-cuerpo">
+                        <div class="tarjeta-texto">
+                            <div class="tarjeta-name">
+                                INFINITA<span class="tarjeta-name-family">family</span>
+                            </div>
+                            <div class="tarjeta-web">www.centros-dentales.com</div>
+                        </div>
+                        <svg class="tarjeta-seal" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Sello Garantía de Clínica Club Dental">
+                            <defs>
+                                <path id="sello-top-fam" d="M 50,50 m -38,0 a 38,38 0 1,1 76,0"/>
+                                <path id="sello-bot-fam" d="M 50,50 m -38,0 a 38,38 0 1,0 76,0"/>
+                            </defs>
+                            <circle cx="50" cy="50" r="46" fill="none" stroke="#17C5CB" stroke-width="1.5"/>
+                            <circle cx="50" cy="50" r="38" fill="none" stroke="#17C5CB" stroke-width="1"/>
+                            <text fill="#17C5CB" font-family="Inter, sans-serif" font-size="8" font-weight="600" letter-spacing="0.5">
+                                <textPath href="#sello-top-fam" startOffset="50%" text-anchor="middle">GARANTÍA DE CLÍNICA</textPath>
+                            </text>
+                            <text fill="#17C5CB" font-family="Inter, sans-serif" font-size="6" letter-spacing="0.3">
+                                <textPath href="#sello-bot-fam" startOffset="50%" text-anchor="middle">profesional y tecnológica</textPath>
+                            </text>
+                            <text x="50" y="46" fill="#17C5CB" font-family="Inter, sans-serif" font-size="6" font-weight="500" text-anchor="middle">Club</text>
+                            <text x="50" y="58" fill="#17C5CB" font-family="Georgia, serif" font-size="11" font-weight="700" font-style="italic" text-anchor="middle">dental</text>
+                        </svg>
                     </div>
                 </div>
                 <p class="tarjeta-description">La Infinita Family incluye a toda tu unidad familiar. Todos disfrutáis de los mismos beneficios con una sola tarjeta.</p>
             </div>
+
         </div>
     </section>
 
