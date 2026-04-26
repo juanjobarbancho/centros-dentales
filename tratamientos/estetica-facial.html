@@ -31,99 +31,6 @@
             background-color: #fff;
         }
 
-        /* NAVBAR */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
-        }
-
-        nav.scrolled {
-            background-color: rgba(255, 255, 255, 0.98);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-        }
-
-        .nav-logo {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--teal-900);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-center {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-center a {
-            color: #333;
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .nav-center a:hover {
-            color: var(--teal);
-        }
-
-        .nav-center a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--teal);
-            transition: width 0.3s ease;
-        }
-
-        .nav-center a:hover::after {
-            width: 100%;
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 2rem;
-        }
-
-        .nav-phone {
-            color: var(--teal);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .nav-btn {
-            background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
-            color: white;
-            border: none;
-            padding: 0.7rem 1.5rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            font-size: 0.95rem;
-        }
-
-        .nav-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 16px rgba(23, 197, 203, 0.3);
-        }
-
         /* BREADCRUMB */
         .breadcrumb {
             padding: 1.5rem 2rem;
@@ -412,51 +319,12 @@
             font-size: 0.9rem;
         }
 
-        /* WHATSAPP FLOTANTE */
-        .whatsapp-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background: #25D366;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-            z-index: 999;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .whatsapp-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .whatsapp-btn svg {
-            width: 30px;
-            height: 30px;
-        }
-
         /* RESPONSIVE */
         @media (max-width: 768px) {
             nav {
                 padding: 1rem;
                 flex-direction: column;
                 gap: 1rem;
-            }
-
-            .nav-center {
-                flex-direction: column;
-                gap: 1rem;
-                width: 100%;
-            }
-
-            .nav-right {
-                width: 100%;
-                justify-content: space-between;
             }
 
             .hero h1 {
@@ -604,22 +472,129 @@
             }
         }
 
+    
+    /* === Mobile Nav (burger) === */
+    .nav__burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 8px; background: none; border: none; }
+    .nav__burger span { display: block; width: 22px; height: 2px; background: var(--dark); border-radius: 2px; }
+    .nav__mobile { display: none; position: fixed; inset: 0; z-index: 1100; background: rgba(4,78,82,.97); backdrop-filter: blur(20px); flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 0 24px; }
+    .nav__mobile.is-open { display: flex; }
+    .nav__mobile a, .nav__mobile button { font-size: 22px; font-weight: 700; color: #fff; text-decoration: none; padding: 12px 40px; border-radius: 14px; transition: .2s; background: none; border: none; cursor: pointer; font-family: inherit; }
+    .nav__mobile a:hover { background: rgba(255,255,255,.1); color: var(--teal); }
+    .nav__mobile-close { position: fixed; top: 22px; right: 22px; z-index: 1101; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.25); cursor: pointer; width: 46px; height: 46px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #fff; transition: .25s; padding: 0; }
+    .nav__mobile-close:hover { background: rgba(255,255,255,.25); transform: rotate(90deg); }
+    @media (max-width: 768px) {
+      .nav__burger { display: flex; }
+    }
+
+    /* === Floating Actions === */
+    .floating-actions { position: fixed; bottom: 24px; right: 24px; z-index: 200; display: flex; flex-direction: column; gap: 12px; }
+    .fab { width: 56px; height: 56px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; border: none; cursor: pointer; transition: transform .25s ease, box-shadow .25s ease; position: relative; padding: 0; }
+    .fab:hover { transform: translateY(-3px) scale(1.05); }
+    .fab svg { width: 28px; height: 28px; }
+    .fab--whatsapp { background: #25D366; box-shadow: 0 6px 20px rgba(37,211,102,.45); }
+    .fab--whatsapp:hover { box-shadow: 0 12px 32px rgba(37,211,102,.6); }
+    .fab--whatsapp svg { fill: #fff; }
+    .fab--phone { background: linear-gradient(135deg, var(--teal), var(--teal-dark)); box-shadow: 0 6px 20px rgba(23,197,203,.45); }
+    .fab--phone:hover { box-shadow: 0 12px 32px rgba(23,197,203,.6); }
+    .fab--phone svg { stroke: #fff; }
+    .fab__label { position: absolute; right: 68px; top: 50%; transform: translateY(-50%); background: #fff; color: var(--dark); font-size: 12px; font-weight: 700; padding: 6px 12px; border-radius: 8px; white-space: nowrap; box-shadow: 0 4px 12px rgba(0,0,0,.12); opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+    .fab:hover .fab__label { opacity: 1; }
+    @media (max-width: 768px) {
+      .floating-actions { bottom: 18px; right: 18px; gap: 10px; }
+      .fab { width: 52px; height: 52px; }
+      .fab svg { width: 26px; height: 26px; }
+      .fab__label { display: none; }
+    }
+
+    /* === Cita Modal === */
+    .cita-modal { position: fixed; inset: 0; z-index: 2000; display: none; align-items: center; justify-content: center; padding: 20px; background: rgba(4,78,82,.55); backdrop-filter: blur(8px); animation: citaFadeIn .25s ease; }
+    .cita-modal.is-open { display: flex; }
+    @keyframes citaFadeIn { from { opacity: 0; } to { opacity: 1; } }
+    .cita-modal__content { background: #fff; border-radius: 24px; max-width: 460px; width: 100%; padding: 32px 28px 28px; position: relative; box-shadow: 0 30px 90px rgba(0,0,0,.35), 0 0 0 1px rgba(226,200,128,.18); animation: citaSlideUp .35s cubic-bezier(.22,.7,.3,1); }
+    @keyframes citaSlideUp { from { opacity: 0; transform: translateY(40px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+    .cita-modal__close { position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border-radius: 50%; background: var(--gray-50); border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; color: var(--gray-500); transition: .2s ease; padding: 0; }
+    .cita-modal__close:hover { background: var(--teal-50); color: var(--teal-dark); transform: rotate(90deg); }
+    .cita-modal__title { font-size: 22px; font-weight: 800; color: var(--dark); letter-spacing: -.01em; margin-bottom: 6px; padding-right: 32px; }
+    .cita-modal__subtitle { font-size: 14px; color: var(--gray-500); line-height: 1.5; margin-bottom: 22px; }
+    .cita-option { display: flex; align-items: center; gap: 14px; padding: 14px 18px; border-radius: 14px; text-decoration: none; transition: transform .2s ease, box-shadow .2s ease; border: 1px solid transparent; }
+    .cita-option:hover { transform: translateY(-2px); }
+    .cita-option__icon { width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .cita-option__icon svg { width: 22px; height: 22px; }
+    .cita-option__text { flex: 1; min-width: 0; }
+    .cita-option__title { font-size: 15px; font-weight: 700; line-height: 1.2; }
+    .cita-option__sub { font-size: 12px; opacity: .75; margin-top: 3px; line-height: 1.3; }
+    .cita-option__arrow { width: 18px; height: 18px; opacity: .5; flex-shrink: 0; }
+    .cita-option--whatsapp { background: linear-gradient(135deg, #25D366 0%, #1FB855 100%); color: #fff; box-shadow: 0 8px 24px rgba(37,211,102,.32); }
+    .cita-option--whatsapp:hover { box-shadow: 0 12px 32px rgba(37,211,102,.42); }
+    .cita-option--whatsapp .cita-option__icon { background: rgba(255,255,255,.2); color: #fff; }
+    .cita-divider { display: flex; align-items: center; gap: 12px; margin: 18px 0; color: var(--gray-500); font-size: 12px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; }
+    .cita-divider::before, .cita-divider::after { content: ''; flex: 1; height: 1px; background: var(--gray-100); }
+    .cita-options-phones { display: flex; flex-direction: column; gap: 8px; }
+    .cita-option--phone { background: var(--gray-50); color: var(--dark); border-color: var(--gray-100); }
+    .cita-option--phone:hover { background: var(--teal-50); border-color: var(--teal-100); box-shadow: 0 6px 20px rgba(23,197,203,.18); }
+    .cita-option--phone .cita-option__icon { background: linear-gradient(135deg, var(--teal), var(--teal-dark)); color: #fff; }
+    .cita-option--phone .cita-option__sub { color: var(--gray-500); }
+    @media (max-width: 480px) {
+      .cita-modal__content { padding: 28px 22px 22px; border-radius: 20px; }
+      .cita-modal__title { font-size: 20px; }
+      .cita-option { padding: 12px 14px; gap: 12px; }
+      .cita-option__icon { width: 40px; height: 40px; }
+    }
+
+  
+        /* === NAVBAR UNIFICADO === */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 24px; transition: .3s; background: rgba(255,255,255,.92); backdrop-filter: blur(14px); }
+        .nav.scrolled { background: rgba(255,255,255,.98); box-shadow: 0 2px 12px rgba(0,0,0,.06); }
+        .nav__inner { max-width: 1180px; margin: 0 auto; height: 72px; display: flex; align-items: center; gap: 32px; }
+        .nav__logo { display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+        .nav__logo-mark { width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, var(--teal), var(--teal-dark)); display: flex; align-items: center; justify-content: center; }
+        .nav__logo-mark svg { width: 22px; height: 22px; color: #fff; }
+        .nav__logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+        .nav__logo-name { font-size: 14px; font-weight: 800; color: var(--dark); letter-spacing: -.01em; }
+        .nav__logo-sub  { font-size: 10px; font-weight: 700; color: var(--teal); letter-spacing: .12em; text-transform: uppercase; }
+        .nav__links { display: flex; align-items: center; gap: 4px; list-style: none; flex: 1; padding-left: 0; }
+        .nav__links a { font-size: 14px; font-weight: 500; color: var(--gray-500); text-decoration: none; padding: 6px 13px; border-radius: 8px; transition: .2s; }
+        .nav__links a:hover { color: var(--teal-dark); background: var(--teal-50); }
+        .nav__right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+        .nav__tel { display: inline-flex; align-items: center; gap: 7px; color: var(--teal); text-decoration: none; font-weight: 700; font-size: 14px; }
+        .nav__tel svg { width: 16px; height: 16px; }
+        .nav__btn { display: inline-flex; align-items: center; gap: 8px; padding: 11px 22px; border-radius: 100px; background: linear-gradient(135deg, var(--teal), var(--teal-dark)); color: #fff; border: none; cursor: pointer; font-size: 14px; font-weight: 700; box-shadow: 0 4px 18px rgba(23,197,203,.4); transition: transform .2s, box-shadow .2s; font-family: inherit; }
+        .nav__btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(23,197,203,.5); }
+        @media (max-width: 960px) { .nav__links, .nav__tel { display: none; } }
+        @media (max-width: 768px) { .nav__inner { height: 64px; gap: 12px; } .nav__btn { padding: 10px 18px; font-size: 13px; } }
+        @media (max-width: 420px) { .nav__btn { display: none; } }
+
     </style>
 </head>
 <body>
     <!-- NAVBAR -->
-    <nav id="navbar">
-        <a href="../index.html" class="nav-logo">Centros Dentales / Banchs & Rojas</a>
-        <ul class="nav-center">
-            <li><a href="../index.html#secciones">Inicio</a></li>
-            <li><a href="../index.html#secciones">Tratamientos</a></li>
-            <li><a href="../index.html#secciones">Clínicas</a></li>
-            <li><a href="../index.html#secciones">Contacto</a></li>
+        <!-- NAVBAR UNIFICADO -->
+    <nav class="nav" id="siteNav">
+      <div class="nav__inner">
+        <a href="../index.html" class="nav__logo">
+          <span class="nav__logo-mark">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 2 4 5.5 4 9.5c0 2.8 1.2 5 3.2 6.5L8.5 22h7l1.3-6C18.8 14.5 20 12.3 20 9.5 20 5.5 16 2 12 2z"/><path d="M9 10h6M12 7v6"/></svg>
+          </span>
+          <span class="nav__logo-text">
+            <span class="nav__logo-name">Centros Dentales</span>
+            <span class="nav__logo-sub">Banchs &amp; Rojas</span>
+          </span>
+        </a>
+        <ul class="nav__links">
+          <li><a href="../index.html#tratamientos">Tratamientos</a></li>
+          <li><a href="../index.html#nosotros">Nosotros</a></li>
+          <li><a href="../index.html#clinicas">Clínicas</a></li>
+          <li><a href="../club-dental.html">Club Dental</a></li>
         </ul>
-        <div class="nav-right">
-            <a href="tel:955914192" class="nav-phone">955 914 192</a>
-            <button class="nav-btn" onclick="window.location.href='https://www.centros-dentales.com/index.php?mod=contacto'">Pedir Cita</button>
+        <div class="nav__right">
+          <a href="tel:955914192" class="nav__tel">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.2 2 2 0 012.19 0h3a2 2 0 012 1.72c.08.6.17 1.2.3 1.77a2 2 0 01-.45 2.11L6.91 7.08A16 16 0 0016.92 17.09l.61-.61a2 2 0 012.11-.45c.57.13 1.17.22 1.77.3A2 2 0 0124 18.92z"/></svg>
+            955 914 192
+          </a>
+          <button type="button" class="btn btn-primary" data-cita-trigger>Pedir Cita</button>
         </div>
+        <button type="button" class="nav__burger" id="navBurger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      </div>
     </nav>
 
     <!-- BREADCRUMB -->
@@ -798,11 +773,66 @@
     </footer>
 
     <!-- WHATSAPP FLOTANTE -->
-    <a href="https://wa.me/34609509869" class="whatsapp-btn" target="_blank">
-        <svg fill="white" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.946 1.347l-.355.206-.368-.061c-1.286-.113-2.514-.504-3.635-1.162l-.204-.123-.212.039c-.667.192-1.3.507-1.872.96L2 5.348C2 2.401 4.25.222 7.041.222c2.791 0 5.041 2.179 5.041 4.867.001 2.687-2.25 4.865-5.041 4.865z"/>
-        </svg>
-    </a>
+    
+    <!-- MODAL PEDIR CITA -->
+    <div class="cita-modal" id="citaModal" role="dialog" aria-modal="true" aria-labelledby="citaModalTitle">
+      <div class="cita-modal__content">
+        <button type="button" class="cita-modal__close" onclick="closeCitaModal()" aria-label="Cerrar">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+        <h3 class="cita-modal__title" id="citaModalTitle">¿Cómo prefieres pedir cita?</h3>
+        <p class="cita-modal__subtitle">Te atendemos al momento por WhatsApp o por teléfono en cualquiera de nuestras clínicas.</p>
+        <a href="https://wa.me/34609509869?text=Hola,%20me%20gustar%C3%ADa%20pedir%20cita" class="cita-option cita-option--whatsapp" target="_blank" rel="noopener">
+          <span class="cita-option__icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></span>
+          <span class="cita-option__text"><span class="cita-option__title">Escribir por WhatsApp</span><span class="cita-option__sub">Respuesta rápida · 9:00 — 21:00</span></span>
+          <svg class="cita-option__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </a>
+        <div class="cita-divider">o llámanos</div>
+        <div class="cita-options-phones">
+          <a href="tel:955914192" class="cita-option cita-option--phone">
+            <span class="cita-option__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.2 2 2 0 012.19 0h3a2 2 0 012 1.72c.08.6.17 1.2.3 1.77a2 2 0 01-.45 2.11L6.91 7.08A16 16 0 0016.92 17.09l.61-.61a2 2 0 012.11-.45c.57.13 1.17.22 1.77.3A2 2 0 0124 18.92z"/></svg></span>
+            <span class="cita-option__text"><span class="cita-option__title">Estepa</span><span class="cita-option__sub">955 914 192</span></span>
+            <svg class="cita-option__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+          <a href="tel:954012464" class="cita-option cita-option--phone">
+            <span class="cita-option__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.2 2 2 0 012.19 0h3a2 2 0 012 1.72c.08.6.17 1.2.3 1.77a2 2 0 01-.45 2.11L6.91 7.08A16 16 0 0016.92 17.09l.61-.61a2 2 0 012.11-.45c.57.13 1.17.22 1.77.3A2 2 0 0124 18.92z"/></svg></span>
+            <span class="cita-option__text"><span class="cita-option__title">Herrera</span><span class="cita-option__sub">954 012 464</span></span>
+            <svg class="cita-option__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+          <a href="tel:957591857" class="cita-option cita-option--phone">
+            <span class="cita-option__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.2 2 2 0 012.19 0h3a2 2 0 012 1.72c.08.6.17 1.2.3 1.77a2 2 0 01-.45 2.11L6.91 7.08A16 16 0 0016.92 17.09l.61-.61a2 2 0 012.11-.45c.57.13 1.17.22 1.77.3A2 2 0 0124 18.92z"/></svg></span>
+            <span class="cita-option__text"><span class="cita-option__title">Lucena</span><span class="cita-option__sub">957 591 857</span></span>
+            <svg class="cita-option__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- MENÚ MÓVIL -->
+    <div class="nav__mobile" id="siteNavMobile">
+      <button type="button" class="nav__mobile-close" onclick="closeMobileNav()" aria-label="Cerrar menú">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <a href="../index.html" onclick="closeMobileNav()">Inicio</a>
+      <a href="../index.html#tratamientos" onclick="closeMobileNav()">Tratamientos</a>
+      <a href="../index.html#nosotros" onclick="closeMobileNav()">Nosotros</a>
+      <a href="../index.html#clinicas" onclick="closeMobileNav()">Clínicas</a>
+      <a href="../club-dental.html" onclick="closeMobileNav()">Club Dental</a>
+      <button type="button" onclick="closeMobileNav();openCitaModal();" style="margin-top:12px;background:linear-gradient(135deg,var(--teal),var(--teal-dark));box-shadow:0 4px 18px rgba(23,197,203,.4);" data-cita-trigger>Pedir Cita</button>
+    </div>
+
+    <!-- BOTONES FLOTANTES -->
+    <div class="floating-actions">
+      <a href="https://wa.me/34609509869?text=Hola,%20me%20gustar%C3%ADa%20pedir%20cita" class="fab fab--whatsapp" target="_blank" rel="noopener" aria-label="Escríbenos por WhatsApp">
+        <span class="fab__label">WhatsApp</span>
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      </a>
+      <button type="button" class="fab fab--phone" onclick="openCitaModal()" aria-label="Llamar a la clínica">
+        <span class="fab__label">Llamar</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.2 2 2 0 012.19 0h3a2 2 0 012 1.72c.08.6.17 1.2.3 1.77a2 2 0 01-.45 2.11L6.91 7.08A16 16 0 0016.92 17.09l.61-.61a2 2 0 012.11-.45c.57.13 1.17.22 1.77.3A2 2 0 0124 18.92z"/></svg>
+      </button>
+    </div>
+
 
     <!-- SCRIPT NAVBAR SCROLL -->
     <script>
@@ -822,6 +852,42 @@
                 item.classList.toggle('active');
             });
         });
-    </script>
+    
+  // Mobile nav + Cita modal
+  const mobileNav = document.getElementById('siteNavMobile');
+  const navBurger = document.querySelector('.nav__burger');
+  if (navBurger && mobileNav) {
+    navBurger.addEventListener('click', () => {
+      mobileNav.classList.add('is-open');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+  function closeMobileNav() {
+    if (mobileNav) {
+      mobileNav.classList.remove('is-open');
+      document.body.style.overflow = '';
+    }
+  }
+  const citaModal = document.getElementById('citaModal');
+  function openCitaModal() {
+    if (citaModal) { citaModal.classList.add('is-open'); document.body.style.overflow = 'hidden'; }
+  }
+  function closeCitaModal() {
+    if (citaModal) { citaModal.classList.remove('is-open'); document.body.style.overflow = ''; }
+  }
+  document.querySelectorAll('[data-cita-trigger]').forEach(el => {
+    el.addEventListener('click', e => { e.preventDefault(); openCitaModal(); });
+  });
+  if (citaModal) {
+    citaModal.addEventListener('click', e => { if (e.target === citaModal) closeCitaModal(); });
+  }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+      if (citaModal && citaModal.classList.contains('is-open')) closeCitaModal();
+      else if (mobileNav && mobileNav.classList.contains('is-open')) closeMobileNav();
+    }
+  });
+
+  </script>
 </body>
 </html>
