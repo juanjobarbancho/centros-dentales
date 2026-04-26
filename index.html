@@ -10,8 +10,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html, body {
+      overflow-x: hidden;
+      overflow-x: clip;
+      max-width: 100%;
+      width: 100%;
+      position: relative;
+      overscroll-behavior-x: none;
+    }
     html { scroll-behavior:smooth; }
-    body { font-family:'Inter',system-ui,sans-serif; color:#0e1f2b; background:#fff; overflow-x:hidden; line-height:1.6; }
+    body { font-family:'Inter',system-ui,sans-serif; color:#0e1f2b; background:#fff; line-height:1.6; touch-action: pan-y; }
+    img, svg, video, iframe { max-width: 100%; height: auto; }
     ::-webkit-scrollbar { width:5px; }
     ::-webkit-scrollbar-track { background:#f0fafa; }
     ::-webkit-scrollbar-thumb { background:#17C5CB; border-radius:3px; }
@@ -101,11 +110,11 @@
     .nav__mobile-header .nav__brand-sub { color:rgba(255,255,255,.7); }
 
     /* HERO */
-    .hero { min-height:100vh; padding:100px 24px 80px; background:linear-gradient(135deg, var(--teal-900) 0%, #0D9EA5 55%, var(--teal) 100%); position:relative; overflow:hidden; display:flex; align-items:center; }
-    .hero__dots { position:absolute; inset:0; pointer-events:none; opacity:.06; background-image:radial-gradient(circle,#fff 1px,transparent 1px); background-size:38px 38px; }
-    .hero__blob { position:absolute; border-radius:50%; filter:blur(80px); opacity:.12; pointer-events:none; }
-    .hero__blob--1 { width:600px; height:600px; background:#fff; top:-200px; right:-100px; }
-    .hero__blob--2 { width:400px; height:400px; background:#7EEDEE; bottom:-100px; left:-80px; }
+    .hero { min-height:100vh; padding:100px 24px 80px; background:linear-gradient(135deg, var(--teal-900) 0%, #0D9EA5 55%, var(--teal) 100%); position:relative; overflow:clip; display:flex; align-items:center; isolation:isolate; }
+    .hero__dots { position:absolute; inset:0; pointer-events:none; opacity:.06; background-image:radial-gradient(circle,#fff 1px,transparent 1px); background-size:38px 38px; will-change:transform; }
+    .hero__blob { position:absolute; border-radius:50%; filter:blur(80px); opacity:.12; pointer-events:none; will-change:transform; }
+    .hero__blob--1 { width:min(600px, 80vw); aspect-ratio:1; height:auto; background:#fff; top:-200px; right:-15%; }
+    .hero__blob--2 { width:min(400px, 60vw); aspect-ratio:1; height:auto; background:#7EEDEE; bottom:-100px; left:-15%; }
     .hero__inner { max-width:800px; margin:0 auto; width:100%; position:relative; z-index:1; }
     .hero__content { position:relative; z-index:1; }
     .hero__title { font-size:clamp(2.6rem,5.5vw,4rem); font-weight:800; color:#fff; line-height:1.08; letter-spacing:-.025em; margin-bottom:24px; }
@@ -259,6 +268,46 @@
       .treat-card__arrow { display:none; }
       .treat-card__pills { display:none; }
       .treat-card__desc { -webkit-line-clamp:3; }
+    }
+
+    /* === Ver todos los tratamientos (solo móvil) === */
+    .treatments__expand-btn {
+      display: none;
+      margin: 18px auto 0;
+      padding: 14px 32px;
+      border-radius: 100px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .02em;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(23,197,203,.35);
+      transition: transform .25s ease, box-shadow .25s ease;
+      align-items: center;
+      gap: 8px;
+    }
+    .treatments__expand-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(23,197,203,.45); }
+    .treatments__expand-btn svg { width: 16px; height: 16px; transition: transform .35s ease; }
+    .treatments__expand-btn.is-open svg { transform: rotate(180deg); }
+
+    @media (max-width: 768px) {
+      /* Por defecto solo se muestran las 4 primeras tarjetas */
+      .treatments__grid .treat-card.is-hidden {
+        display: none;
+      }
+      .treatments__grid.is-expanded .treat-card.is-hidden {
+        display: grid;
+        animation: slideDownFade .45s cubic-bezier(.22,.7,.3,1) both;
+      }
+      .treatments__expand-btn {
+        display: inline-flex;
+      }
+    }
+    @keyframes slideDownFade {
+      from { opacity: 0; transform: translateY(-12px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
     /* WHY US — sticky scroll reveal */
@@ -613,7 +662,7 @@
         <div class="treat-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
 
-      <a href="tratamientos/periodoncia.html" class="treat-card fade-up">
+      <a href="tratamientos/periodoncia.html" class="treat-card fade-up is-hidden">
         <div class="treat-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
         <div class="treat-card__body">
           <div class="treat-card__title">Periodoncia</div>
@@ -623,7 +672,7 @@
         <div class="treat-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
 
-      <a href="tratamientos/endodoncia.html" class="treat-card fade-up">
+      <a href="tratamientos/endodoncia.html" class="treat-card fade-up is-hidden">
         <div class="treat-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2C8 2 4 5.5 4 9.5c0 2.8 1.2 5 3.2 6.5L8.5 22h7l1.3-6C18.8 14.5 20 12.3 20 9.5 20 5.5 16 2 12 2z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="9" y1="11" x2="15" y2="11"/></svg></div>
         <div class="treat-card__body">
           <div class="treat-card__title">Endodoncia</div>
@@ -633,7 +682,7 @@
         <div class="treat-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
 
-      <a href="tratamientos/odontologia-conservadora.html" class="treat-card fade-up">
+      <a href="tratamientos/odontologia-conservadora.html" class="treat-card fade-up is-hidden">
         <div class="treat-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
         <div class="treat-card__body">
           <div class="treat-card__title">Odontología Conservadora</div>
@@ -643,7 +692,7 @@
         <div class="treat-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
 
-      <a href="tratamientos/odontopediatria.html" class="treat-card fade-up">
+      <a href="tratamientos/odontopediatria.html" class="treat-card fade-up is-hidden">
         <div class="treat-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
         <div class="treat-card__body">
           <div class="treat-card__title">Odontopediatría</div>
@@ -653,7 +702,7 @@
         <div class="treat-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
 
-      <a href="tratamientos/bruxismo-atm.html" class="treat-card fade-up">
+      <a href="tratamientos/bruxismo-atm.html" class="treat-card fade-up is-hidden">
         <div class="treat-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M8 15s1.5 2 4 2 4-2 4-2M9 9h.01M15 9h.01"/></svg></div>
         <div class="treat-card__body">
           <div class="treat-card__title">Bruxismo y ATM</div>
@@ -663,7 +712,7 @@
         <div class="treat-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
 
-      <a href="tratamientos/cirugia-bucal.html" class="treat-card fade-up">
+      <a href="tratamientos/cirugia-bucal.html" class="treat-card fade-up is-hidden">
         <div class="treat-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="6"/><path d="M12 14v8M8 18h8"/></svg></div>
         <div class="treat-card__body">
           <div class="treat-card__title">Cirugía Bucal</div>
@@ -673,7 +722,7 @@
         <div class="treat-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
 
-      <a href="tratamientos/estetica-facial.html" class="treat-card fade-up">
+      <a href="tratamientos/estetica-facial.html" class="treat-card fade-up is-hidden">
         <div class="treat-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
         <div class="treat-card__body">
           <div class="treat-card__title">Estética Facial</div>
@@ -683,6 +732,12 @@
         <div class="treat-card__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
       </a>
 
+    </div>
+    <div style="text-align:center;">
+      <button class="treatments__expand-btn" id="expandTreatments" aria-expanded="false" type="button">
+        <span class="treatments__expand-label">Ver todos los tratamientos</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
     </div>
   </div>
 </section>
@@ -1126,8 +1181,11 @@
         nav.classList.toggle('scrolled', y > 20);
 
         if (heroSection && y < innerHeight * 1.2) {
-          if (heroBlob1) heroBlob1.style.transform = `translate3d(${y * 0.08}px, ${y * 0.18}px, 0)`;
-          if (heroBlob2) heroBlob2.style.transform = `translate3d(${-y * 0.06}px, ${-y * 0.12}px, 0)`;
+          const isMobile = innerWidth < 768;
+          // En móvil, sólo eje Y para no provocar overflow horizontal
+          const xMul = isMobile ? 0 : 1;
+          if (heroBlob1) heroBlob1.style.transform = `translate3d(${y * 0.08 * xMul}px, ${y * 0.18}px, 0)`;
+          if (heroBlob2) heroBlob2.style.transform = `translate3d(${-y * 0.06 * xMul}px, ${-y * 0.12}px, 0)`;
           if (heroDots)  heroDots.style.transform  = `translate3d(0, ${y * 0.3}px, 0)`;
           if (heroInner) {
             const fade = Math.max(0, 1 - y / (innerHeight * 0.7));
@@ -1152,6 +1210,23 @@
     }
   }
   window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ===== Ver todos los tratamientos (móvil) ===== */
+  const expandBtn = document.getElementById('expandTreatments');
+  const treatmentsGrid = document.querySelector('.treatments__grid');
+  if (expandBtn && treatmentsGrid) {
+    const label = expandBtn.querySelector('.treatments__expand-label');
+    expandBtn.addEventListener('click', () => {
+      const isOpen = treatmentsGrid.classList.toggle('is-expanded');
+      expandBtn.classList.toggle('is-open', isOpen);
+      expandBtn.setAttribute('aria-expanded', isOpen);
+      label.textContent = isOpen ? 'Ver menos' : 'Ver todos los tratamientos';
+      if (!isOpen) {
+        // Al colapsar, scroll suave a la sección de tratamientos
+        document.getElementById('tratamientos').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  }
 </script>
 </body>
 </html>
